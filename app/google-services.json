@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1098344294693",
+    "project_id": "questmanager-b70bf",
+    "storage_bucket": "questmanager-b70bf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1098344294693:android:76881d4eb92d0c6a6812cc",
+        "android_client_info": {
+          "package_name": "com.projects.questmanager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1098344294693-0qpr4j0bpvacu5d3nepuefv72q0ahrr4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQ6KjzS2d4gf-kUZJFJERLqi8JQ8lwBlY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1098344294693-0qpr4j0bpvacu5d3nepuefv72q0ahrr4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
