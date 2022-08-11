@@ -3,8 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/andre/AndroidStudioProjects/QuestManager/app/src/main/res/layout/activity_login.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/andre/AndroidStudioProjects/QuestManager/app/src/main/res/layout/activity_main.xml" value="0.11302083333333333" />
-        <entry key="..\:/Users/andre/AndroidStudioProjects/QuestManager/app/src/main/res/layout/activity_main_menu.xml" value="0.11302083333333333" />
+        <entry key="..\:/Users/andre/AndroidStudioProjects/QuestManager/app/src/main/res/layout/activity_main_menu.xml" value="0.264" />
+        <entry key="..\:/Users/andre/AndroidStudioProjects/QuestManager/app/src/main/res/menu/popupmenu.xml" value="0.25416666666666665" />
       </map>
     </option>
   </component>
@@ -13,5 +15,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.264" />
+      </ProjectState>
+    </option>
   </component>
 </project>
