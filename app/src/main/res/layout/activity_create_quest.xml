@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CreateQuestActivity"
+    android:background="@color/black">
+
+    <TextView
+        android:id="@+id/userName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textAlignment="center"
+        android:text="user"
+        android:textColorHint="@color/white"
+        android:textSize="15pt" />
+
+
+    <EditText
+        android:id="@+id/newPartyName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:hint="Enter party name"
+        android:textAlignment="center"
+        android:textColorHint="@color/grey"
+        android:textSize="15pt"
+        android:layout_below="@id/userName"/>
+
+    <EditText
+        android:id="@+id/setEntryPass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:hint="Set entry password"
+        android:textAlignment="center"
+        android:textColorHint="@color/grey"
+        android:textSize="15pt"
+        android:layout_below="@id/newPartyName"/>
+
+    <EditText
+        android:id="@+id/setAdminPass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:hint="set admin pass"
+        android:textAlignment="center"
+        android:textColorHint="@color/grey"
+        android:textSize="15pt"
+        android:layout_below="@id/setEntryPass"/>
+
+    <EditText
+        android:id="@+id/setLimit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:hint="Set players limit"
+        android:textAlignment="center"
+        android:textColorHint="@color/grey"
+        android:textSize="15pt"
+        android:layout_below="@id/setAdminPass"/>
+
+    <EditText
+        android:id="@+id/questDescription"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:textColor="@color/white"
+        android:hint="Enter quest description"
+        android:textAlignment="center"
+        android:textColorHint="@color/grey"
+        android:textSize="15pt"
+        android:layout_below="@id/setLimit"/>
+
+    <Button
+        android:id="@+id/addImage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:enabled="false"
+        android:text="Add image"
+        android:textColor="@color/grey"
+        android:layout_margin="50dp"
+        android:layout_below="@id/questDescription"/>
+
+    <Button
+        android:id="@+id/creationConfirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:enabled="false"
+        android:text="OK"
+        android:textColor="@color/grey"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>
