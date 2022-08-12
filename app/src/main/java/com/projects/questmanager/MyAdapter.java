@@ -13,11 +13,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
-    private List<String> list;
+    private List<QuestInfo> list;
     private Context context;
 //    private LayoutInflater inflater;
 
-    public MyAdapter(Context context, List<String> partyNameList) {
+    public MyAdapter(Context context, List<QuestInfo> partyNameList) {
         this.context = context;
         this.list = partyNameList;
     }
@@ -30,7 +30,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MyAdapter.MyViewHolder holder, int position) {
-        holder.partyName.setText(list.get(position));
+        holder.partyName.setText(list.get(position).getQuestName());
+        holder.location.setText(list.get(position).getQuestLocation());
     }
 
 
@@ -43,12 +44,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         LinearLayout linearLayout;
 
         TextView partyName;
+        TextView location;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             linearLayout=itemView.findViewById(R.id.layout);
             linearLayout.setBackgroundResource(R.drawable.abc);
             partyName = itemView.findViewById(R.id.partyName);
+            location = itemView.findViewById(R.id.questLocation);
 
 
         }

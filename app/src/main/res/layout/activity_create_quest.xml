@@ -22,12 +22,23 @@
         android:id="@+id/newPartyName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/white"
+        android:layout_below="@id/userName"
         android:hint="Enter party name"
         android:textAlignment="center"
+        android:textColor="@color/white"
         android:textColorHint="@color/grey"
-        android:textSize="15pt"
-        android:layout_below="@id/userName"/>
+        android:textSize="15pt" />
+
+    <EditText
+        android:id="@+id/questLocation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/newPartyName"
+        android:hint="Enter quest location"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textColorHint="@color/grey"
+        android:textSize="15pt" />
 
     <EditText
         android:id="@+id/setEntryPass"
@@ -38,7 +49,7 @@
         android:textAlignment="center"
         android:textColorHint="@color/grey"
         android:textSize="15pt"
-        android:layout_below="@id/newPartyName"/>
+        android:layout_below="@id/questLocation"/>
 
     <EditText
         android:id="@+id/setAdminPass"
