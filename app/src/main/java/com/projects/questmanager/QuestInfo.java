@@ -1,5 +1,7 @@
 package com.projects.questmanager;
 
+import android.net.Uri;
+
 public class QuestInfo {
     private String questName;
     private String adminName;
@@ -55,8 +57,17 @@ public QuestInfo(String questName, String adminName, String adminPass, String us
         this.userPass = userPass;
     }
 
-    public String getUrlImage() {
-        return urlImage;
+    public Uri getUrlImage() {
+    try {
+        if(urlImage.equals(null)){
+            return Uri.parse("https://firebasestorage.googleapis.com/v0/b/questmanager-b70bf.appspot.com/o/images%2Fphoto_2022-02-03_14-08-37.jpg?alt=media&token=3c4b543d-66af-445c-af3a-b5d3ad4fb716");
+        }
+        return Uri.parse(urlImage);
+    }catch (Exception
+    e){
+        return null;
+    }
+
     }
 
     public void setUrlImage(String urlImage) {

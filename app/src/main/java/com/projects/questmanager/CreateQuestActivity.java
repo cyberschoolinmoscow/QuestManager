@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -21,6 +22,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -40,6 +42,9 @@ public class CreateQuestActivity extends AppCompatActivity {
     int limit;
     private EditText description;
     private EditText location;
+
+    private ImageView showImage;
+    private Button addImage;
 //    private DatabaseReference roomRef;
 
     @Override
@@ -56,6 +61,15 @@ public class CreateQuestActivity extends AppCompatActivity {
         creationConfirm = findViewById(R.id.creationConfirm);
         description = findViewById(R.id.questDescription);
         location = findViewById(R.id.questLocation);
+        showImage = findViewById(R.id.showImage);
+        addImage = findViewById(R.id.addImage);
+        addImage.setOnClickListener(v->selectImage());
+        try {
+            Picasso.get().load(PlayerPreferences.urlLink).into(showImage);
+        }
+        catch (Exception e){
+
+        }
 //        userName.setText(PlayerPrefs.playerName);
         userName.setText(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
         newPartyName.addTextChangedListener(new TextWatcher() {
@@ -138,24 +152,36 @@ public class CreateQuestActivity extends AppCompatActivity {
         });
 
         creationConfirm.setOnClickListener(v->CreateParty());
+
+      try {
+           newPartyName.setText(PlayerPreferences.questName);
+            //todo: create static fields final
+            setEntryPass.setText(PlayerPreferences.userPass);
+            setAdminPass.setText(PlayerPreferences.adminPass);
+            setLimit.setText(PlayerPreferences.usersLimit);
+            description.setText(PlayerPreferences.questDescription);
+            location.setText(PlayerPreferences.questLocation);
+        }
+      catch (Exception e){
+
+      }
+    }
+
+    private void selectImage() {
+        PlayerPreferences.questName=newPartyName.getText().toString();
+        //todo: create static fields final
+        PlayerPreferences.adminName=(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
+        PlayerPreferences.userPass=setEntryPass.getText().toString();
+        PlayerPreferences.adminPass=setAdminPass.getText().toString();
+        PlayerPreferences.usersLimit=(setLimit.getText().toString());
+        PlayerPreferences.questDescription=description.getText().toString();
+        PlayerPreferences.questLocation=location.getText().toString();
+        Intent intentSelectImage=new Intent(CreateQuestActivity.this, ImageSelectActivity.class);
+        startActivity(intentSelectImage);
     }
 //    FirebaseDatabase database;
 
     private void CreateParty() {
-
-//
-//        Log.println(Log.DEBUG,"myplay",PlayerPrefs.partyName);
-//        Log.println(Log.DEBUG,"myplay",PlayerPrefs.admin);
-//        Log.println(Log.DEBUG,"myplay",PlayerPrefs.password);
-//        Log.println(Log.DEBUG,"myplay",PlayerPrefs.adminPassword);
-//        Log.println(Log.DEBUG,"myplay",PlayerPrefs.limit.toString());
-//
-//        database=FirebaseDatabase.getInstance("https://multiplayergame-996aa-default-rtdb.europe-west1.firebasedatabase.app/");
-//        roomRef=database.getReference().child("rooms");
-//        roomRef.child(PlayerPrefs.partyName).child("admin").setValue(PlayerPrefs.admin);
-//        roomRef.child(PlayerPrefs.partyName).child("password").setValue(PlayerPrefs.password);
-//        roomRef.child(PlayerPrefs.partyName).child("adminPassword").setValue(PlayerPrefs.adminPassword);
-//        roomRef.child(PlayerPrefs.partyName).child("limit").setValue(PlayerPrefs.limit);
 
 String questName, adminName, adminPass, userPass, urlImage, isConfirmedByHQ, questDescription,usersLimit,questLocation;
         questName=newPartyName.getText().toString();
@@ -166,7 +192,8 @@ String questName, adminName, adminPass, userPass, urlImage, isConfirmedByHQ, que
         usersLimit=(setLimit.getText().toString());
         questDescription=description.getText().toString();
         questLocation=location.getText().toString();
-//
+        urlImage="";
+urlImage=PlayerPreferences.urlLink;
         // Create a new quest with a first and last name
 //        Map<String, Object> quest = new HashMap<>();
 //        quest.put("questName", questName);
@@ -178,7 +205,7 @@ String questName, adminName, adminPass, userPass, urlImage, isConfirmedByHQ, que
 //        quest.put("isConfirmedByHQ", "true");
 //        quest.put("questDescription", questDescription);
 
-QuestInfo quest=new QuestInfo(questName, adminName, adminPass,  userPass,  "urlImage",  "isConfirmedByHQ",  questDescription, usersLimit, questLocation);
+QuestInfo quest=new QuestInfo(questName, adminName, adminPass,  userPass,  urlImage,  "isConfirmedByHQ",  questDescription, usersLimit, questLocation);
 
 // Add a new document with a generated ID
         db.collection("Quests")
@@ -187,6 +214,8 @@ QuestInfo quest=new QuestInfo(questName, adminName, adminPass,  userPass,  "urlI
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
                         Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+                        Intent intentManagement=new Intent(CreateQuestActivity.this, TaskManagementActivity.class);
+                        startActivity(intentManagement);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {

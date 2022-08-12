@@ -3,6 +3,7 @@ package com.projects.questmanager;
 import static android.content.ContentValues.TAG;
 
 import android.Manifest;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -99,7 +100,14 @@ public class MainMenuActivity extends AppCompatActivity {
                                 adminPass = document.getData().get("adminPass").toString();
                                 userPass = document.getData().get("userPass").toString();
                                 usersLimit = document.getData().get("usersLimit").toString();
-                                urlImage = document.getData().get("urlImage").toString();
+                                try {
+                                    urlImage = document.getData().get("urlImage").toString();
+
+
+                                }catch (Exception e){
+                                    urlImage = "";
+
+                                }
                                 isConfirmedByHQ = document.getData().get("isConfirmedByHQ").toString();
                                 questDescription = document.getData().get("questDescription").toString();
                                 String questLocation = document.getData().get("questLocation").toString();
@@ -148,9 +156,24 @@ public class MainMenuActivity extends AppCompatActivity {
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
-                if (menuItem.getTitle().equals("Three")) {
-                    Toast.makeText(MainMenuActivity.this, "J O P A", Toast.LENGTH_SHORT).show();
+
+                switch (menuItem.getTitle().toString()){
+                    case "My quests":
+                        Intent intentMyQuests=new Intent(MainMenuActivity.this, MyQuestActivity.class);
+                        startActivity(intentMyQuests);
+                        break;
+
+                    case "Create quest":
+                        Intent intentCreate=new Intent(MainMenuActivity.this, CreateQuestActivity.class);
+                        startActivity(intentCreate);
+                        break;
+
+                    default:
+                        break;
                 }
+//                if (menuItem.getTitle().equals("Three")) {
+//                    Toast.makeText(MainMenuActivity.this, "J O P A", Toast.LENGTH_SHORT).show();
+//                }
                 return true;
             }
         });

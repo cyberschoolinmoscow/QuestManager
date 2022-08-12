@@ -6,7 +6,7 @@
         />
     <item
         android:id="@+id/two"
-        android:title="My quest" />
+        android:title="My quests" />
     <item
         android:id="@+id/three"
         android:title="Create quest"
