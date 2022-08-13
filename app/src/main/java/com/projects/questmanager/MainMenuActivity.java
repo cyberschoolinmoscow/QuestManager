@@ -58,6 +58,7 @@ public class MainMenuActivity extends AppCompatActivity {
         menuButton.setOnClickListener(v -> OpenMenu());
 
         recyclerView = findViewById(R.id.recyclerView);
+
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 
@@ -70,7 +71,7 @@ public class MainMenuActivity extends AppCompatActivity {
 //        questDescription=description.getText().toString();
 //
         // Create a new quest with a first and last name
-        Map<String, Object> quest = new HashMap<>();
+//        Map<String, Object> quest = new HashMap<>();
 //        quest.put("questName", questName);
 //        quest.put("adminName", adminName);
 //        quest.put("adminPass", adminPass);
