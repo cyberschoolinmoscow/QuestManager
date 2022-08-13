@@ -48,6 +48,12 @@ public class TaskManagementActivity extends AppCompatActivity {
         setContentView(R.layout.activity_task_management);
 
         questName = findViewById(R.id.questName);
+        try {
+            questName.setText(PlayerPreferences.currentQuest.getQuestName());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         recyclerView = findViewById(R.id.recyclerView);
         frameLayoutManagement = findViewById(R.id.frameLayoutManagement);
         taskName = findViewById(R.id.taskName);
@@ -60,7 +66,12 @@ public class TaskManagementActivity extends AppCompatActivity {
 
         //todo: change edittext to textview
         questID = findViewById(R.id.questID);
-
+        try{
+            questID.setText(PlayerPreferences.currentQuest.getQuestID());
+        }
+        catch (Exception e){
+         e.printStackTrace();
+        }
 //        String taskName, tascLoc, taskDescription, correctAnswer;
 //        Toast.makeText(this, "l:" + taskList.size(), Toast.LENGTH_SHORT).show();
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -86,7 +97,7 @@ public class TaskManagementActivity extends AppCompatActivity {
         String s3 = taskDesc.getText().toString();
         String s4 = taskCorrectAnswer.getText().toString();
         String s2 = taskLoc.getText().toString();
-        String s5 = questID.getText().toString();
+        String s5 = PlayerPreferences.currentQuest.getQuestID();
 
         taskName.setText("");
         taskDesc.setText("");
@@ -95,27 +106,30 @@ public class TaskManagementActivity extends AppCompatActivity {
 //        String s5 = questID.getText().toString();
         TaskInfo task = new TaskInfo(s1, s2, s3, s4, s5);
 
-        db.collection("Tasks")
-                .add(task)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
-                        frameLayoutManagement.setVisibility(View.INVISIBLE);
-                        newTask.setVisibility(View.VISIBLE);
+//        try {
+//            MyUtils.updateTaskInfo(task,PlayerPreferences.currentQuest.getQuestID());
+//        }catch (Exception e) {
+            db.collection("Tasks")
+                    .add(task)
+                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                        @Override
+                        public void onSuccess(DocumentReference documentReference) {
+                            Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+                            frameLayoutManagement.setVisibility(View.INVISIBLE);
+                            newTask.setVisibility(View.VISIBLE);
 
-                        updateList();
+                            updateList();
 
 
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Error adding document", e);
-                    }
-                });
-
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.w(TAG, "Error adding document", e);
+                        }
+                    });
+//        }
 
     }
 
@@ -137,8 +151,8 @@ public class TaskManagementActivity extends AppCompatActivity {
                                 TaskInfo task1 = new TaskInfo(s1, s2, s3, s4, s5);
 
                                 Log.d(TAG, document.getId() + " => " + document.getData());
-
-                                taskList.add(task1);
+if(task1.getQuestID().equals(PlayerPreferences.currentQuest.getQuestID())){
+                                taskList.add(task1);}
 
                             }
 

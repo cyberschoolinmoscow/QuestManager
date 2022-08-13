@@ -151,6 +151,8 @@ public class LoginActivity extends AppCompatActivity {
 
             btn_login.setVisibility(View.INVISIBLE);
 
+            PlayerPreferences.playerName=name;
+
 
         } else {
             text.setText("Firebase Login \n");

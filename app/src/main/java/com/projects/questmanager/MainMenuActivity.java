@@ -60,30 +60,6 @@ public class MainMenuActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-
-//        questName=newPartyName.getText().toString();
-        //todo: create static fields final
-//        adminName=(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
-//        userPass=setEntryPass.getText().toString();
-//        adminPass=setAdminPass.getText().toString();
-//        usersLimit=Integer.parseInt(setLimit.getText().toString());
-//        questDescription=description.getText().toString();
-//
-        // Create a new quest with a first and last name
-//        Map<String, Object> quest = new HashMap<>();
-//        quest.put("questName", questName);
-//        quest.put("adminName", adminName);
-//        quest.put("adminPass", adminPass);
-//        quest.put("userPass", userPass);
-//        quest.put("usersLimit", usersLimit);
-//        quest.put("urlImage", 1815);
-//        quest.put("isConfirmedByHQ", true);
-//        quest.put("questDescription", questDescription);
-
-
-        //
-
         db.collection("Quests")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -93,7 +69,7 @@ public class MainMenuActivity extends AppCompatActivity {
                             partyNameList.clear();
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 //  getResult
-                                  String questName, adminName, adminPass, userPass, urlImage, isConfirmedByHQ, questDescription,usersLimit;
+                                String questName, adminName, adminPass, userPass, urlImage, isConfirmedByHQ, questDescription, usersLimit;
 
                                 Log.d(TAG, document.getId() + " => " + document.getData());
                                 questName = document.getData().get("questName").toString();
@@ -101,11 +77,14 @@ public class MainMenuActivity extends AppCompatActivity {
                                 adminPass = document.getData().get("adminPass").toString();
                                 userPass = document.getData().get("userPass").toString();
                                 usersLimit = document.getData().get("usersLimit").toString();
+                                String questID = document.getId().toString();
+
+
                                 try {
                                     urlImage = document.getData().get("urlImage").toString();
 
 
-                                }catch (Exception e){
+                                } catch (Exception e) {
                                     urlImage = "";
 
                                 }
@@ -113,7 +92,9 @@ public class MainMenuActivity extends AppCompatActivity {
                                 questDescription = document.getData().get("questDescription").toString();
                                 String questLocation = document.getData().get("questLocation").toString();
 
-                                QuestInfo questInfo=new QuestInfo(questName, adminName, adminPass, userPass, urlImage, isConfirmedByHQ, questDescription,usersLimit,questLocation);
+                                QuestInfo questInfo = new QuestInfo(questName, adminName, adminPass, userPass, urlImage, isConfirmedByHQ, questDescription, usersLimit, questLocation, questID);
+
+                              MyUtils.updateQuestInfo(questInfo,questID);
                                 partyNameList.add(questInfo);
 
                             }
@@ -132,15 +113,11 @@ public class MainMenuActivity extends AppCompatActivity {
                         }
                     }
                 });
-        adapter = new MyAdapter(MainMenuActivity.this, partyNameList);
+//        adapter = new MyAdapter(MainMenuActivity.this, partyNameList);
 
 //        Log.println(Log.DEBUG,"mytag",partyNameList.size()+"");
 
         recyclerView.setAdapter(adapter);
-//        partyNameList.add(questName);
-//        partyNameList.add("j o p a a a");
-//        partyNameList.add("biba");
-//        partyNameList.add("Dina");
 
 //        adapter = new MyAdapter(MainMenuActivity.this, partyNameList);
 
@@ -158,14 +135,14 @@ public class MainMenuActivity extends AppCompatActivity {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
 
-                switch (menuItem.getTitle().toString()){
+                switch (menuItem.getTitle().toString()) {
                     case "My quests":
-                        Intent intentMyQuests=new Intent(MainMenuActivity.this, MyQuestActivity.class);
+                        Intent intentMyQuests = new Intent(MainMenuActivity.this, MyQuestActivity.class);
                         startActivity(intentMyQuests);
                         break;
 
                     case "Create quest":
-                        Intent intentCreate=new Intent(MainMenuActivity.this, CreateQuestActivity.class);
+                        Intent intentCreate = new Intent(MainMenuActivity.this, CreateQuestActivity.class);
                         startActivity(intentCreate);
                         break;
 

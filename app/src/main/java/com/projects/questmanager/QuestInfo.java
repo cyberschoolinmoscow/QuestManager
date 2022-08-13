@@ -12,18 +12,20 @@ public class QuestInfo {
     private String questDescription;
     private String usersLimit;
     private String questLocation;
+    private String questID;
 
-public QuestInfo(String questName, String adminName, String adminPass, String userPass, String urlImage, String isConfirmedByHQ, String questDescription,String usersLimit,String questLocation) {
-    this.questName=questName;
-    this.adminName=adminName;
-    this.adminPass=adminPass;
-    this.userPass=userPass;
-    this.urlImage=urlImage;
-    this.isConfirmedByHQ=isConfirmedByHQ;
-    this.questDescription=questDescription;
-    this.usersLimit=usersLimit;
-    this.questLocation=questLocation;
-}
+    public QuestInfo(String questName, String adminName, String adminPass, String userPass, String urlImage, String isConfirmedByHQ, String questDescription, String usersLimit, String questLocation, String questID) {
+        this.questName = questName;
+        this.adminName = adminName;
+        this.adminPass = adminPass;
+        this.userPass = userPass;
+        this.urlImage = urlImage;
+        this.isConfirmedByHQ = isConfirmedByHQ;
+        this.questDescription = questDescription;
+        this.usersLimit = usersLimit;
+        this.questLocation = questLocation;
+        this.questID = questID;
+    }
 
     public String getQuestName() {
         return questName;
@@ -58,15 +60,15 @@ public QuestInfo(String questName, String adminName, String adminPass, String us
     }
 
     public Uri getUrlImage() {
-    try {
-        if(urlImage.equals(null)){
-            return Uri.parse("https://firebasestorage.googleapis.com/v0/b/questmanager-b70bf.appspot.com/o/images%2Fphoto_2022-02-03_14-08-37.jpg?alt=media&token=3c4b543d-66af-445c-af3a-b5d3ad4fb716");
+        try {
+            if (urlImage.equals(null)) {
+                return Uri.parse("https://firebasestorage.googleapis.com/v0/b/questmanager-b70bf.appspot.com/o/images%2Fphoto_2022-02-03_14-08-37.jpg?alt=media&token=3c4b543d-66af-445c-af3a-b5d3ad4fb716");
+            }
+            return Uri.parse(urlImage);
+        } catch (Exception
+                e) {
+            return null;
         }
-        return Uri.parse(urlImage);
-    }catch (Exception
-    e){
-        return null;
-    }
 
     }
 
@@ -104,5 +106,13 @@ public QuestInfo(String questName, String adminName, String adminPass, String us
 
     public void setQuestLocation(String questLocation) {
         this.questLocation = questLocation;
+    }
+
+    public String getQuestID() {
+        return questID;
+    }
+
+    public void setQuestID(String questID) {
+        this.questID = questID;
     }
 }

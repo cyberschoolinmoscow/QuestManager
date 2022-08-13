@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UserQuestActivity"
+    android:background="@color/black">
+
+    <TextView
+        android:id="@+id/userName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="user"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="15pt" />
+
+
+    <TextView
+        android:id="@+id/partyName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/userName"
+        android:text="Party name"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="15pt" />
+
+    <TextView
+        android:id="@+id/questLocation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/partyName"
+        android:text="Quest location"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="15pt" />
+
+    <EditText
+        android:id="@+id/entryPass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/questLocation"
+        android:hint="Entry password"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textColorHint="@color/grey"
+        android:textSize="15pt" />
+
+
+    <TextView
+        android:id="@+id/questDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/entryPass"
+        android:text="Enter quest description"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textColorHint="@color/grey"
+        android:textSize="15pt" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/questDescription"
+        android:layout_marginTop="25dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/showImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="20"
+            android:enabled="true"
+            android:src="@mipmap/ic_launcher"
+            android:text="Add image"
+            android:textColor="@color/grey" />
+
+        <Button
+            android:id="@+id/joinButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_weight="1"
+            android:enabled="false"
+            android:text="OK"
+            android:textColor="@color/grey"
+            android:visibility="invisible"/>
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>

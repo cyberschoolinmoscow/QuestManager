@@ -154,13 +154,13 @@ public class CreateQuestActivity extends AppCompatActivity {
         creationConfirm.setOnClickListener(v->CreateParty());
 
       try {
-           newPartyName.setText(PlayerPreferences.questName);
+           newPartyName.setText(PlayerPreferences.currentQuest.getQuestName());
             //todo: create static fields final
-            setEntryPass.setText(PlayerPreferences.userPass);
-            setAdminPass.setText(PlayerPreferences.adminPass);
-            setLimit.setText(PlayerPreferences.usersLimit);
-            description.setText(PlayerPreferences.questDescription);
-            location.setText(PlayerPreferences.questLocation);
+            setEntryPass.setText(PlayerPreferences.currentQuest.getUserPass());
+            setAdminPass.setText(PlayerPreferences.currentQuest.getAdminPass());
+            setLimit.setText(PlayerPreferences.currentQuest.getUsersLimit());
+            description.setText(PlayerPreferences.currentQuest.getQuestDescription());
+            location.setText(PlayerPreferences.currentQuest.getQuestLocation());
         }
       catch (Exception e){
 
@@ -182,7 +182,6 @@ public class CreateQuestActivity extends AppCompatActivity {
 //    FirebaseDatabase database;
 
     private void CreateParty() {
-
 String questName, adminName, adminPass, userPass, urlImage, isConfirmedByHQ, questDescription,usersLimit,questLocation;
         questName=newPartyName.getText().toString();
         //todo: create static fields final
@@ -192,6 +191,7 @@ String questName, adminName, adminPass, userPass, urlImage, isConfirmedByHQ, que
         usersLimit=(setLimit.getText().toString());
         questDescription=description.getText().toString();
         questLocation=location.getText().toString();
+      String  questID="default";
         urlImage="";
 urlImage=PlayerPreferences.urlLink;
         // Create a new quest with a first and last name
@@ -205,26 +205,36 @@ urlImage=PlayerPreferences.urlLink;
 //        quest.put("isConfirmedByHQ", "true");
 //        quest.put("questDescription", questDescription);
 
-QuestInfo quest=new QuestInfo(questName, adminName, adminPass,  userPass,  urlImage,  "isConfirmedByHQ",  questDescription, usersLimit, questLocation);
+QuestInfo quest=new QuestInfo(questName, adminName, adminPass,  userPass,  urlImage,  "isConfirmedByHQ",  questDescription, usersLimit, questLocation, questID);
+//if( db.collection("Quests").)
 
+        try {
+            MyUtils.updateQuestInfo(quest,PlayerPreferences.currentQuest.getQuestID());
+            Intent intentManagement = new Intent(CreateQuestActivity.this, TaskManagementActivity.class);
+            startActivity(intentManagement);
+        }catch (Exception e) {
 // Add a new document with a generated ID
-        db.collection("Quests")
-                .add(quest)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
-                        Intent intentManagement=new Intent(CreateQuestActivity.this, TaskManagementActivity.class);
-                        startActivity(intentManagement);
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Error adding document", e);
-                    }
-                });
+            db.collection("Quests")
+                    .add(quest)
+                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                        @Override
+                        public void onSuccess(DocumentReference documentReference) {
+                            Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+//                        db.collection("").getId(documentReference.getId().toString()).
+//                                document.getData().put("questID",questID);
 
+
+                            Intent intentManagement = new Intent(CreateQuestActivity.this, TaskManagementActivity.class);
+                            startActivity(intentManagement);
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.w(TAG, "Error adding document", e);
+                        }
+                    });
+        }
 //        Intent intent=new Intent(CreateQuestActivity.this,TaskManagementActivity.class);
 //        startActivity(intent);
     }
