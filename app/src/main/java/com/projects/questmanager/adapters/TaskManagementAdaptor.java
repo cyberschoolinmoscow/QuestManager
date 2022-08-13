@@ -1,4 +1,4 @@
-package com.projects.questmanager;
+package com.projects.questmanager.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,10 +12,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.projects.questmanager.R;
+import com.projects.questmanager.TaskInfo;
+import com.projects.questmanager.utils.PlayerPreferences;
+
 import java.util.List;
 
 
-public class TaskManagementAdaptor extends RecyclerView.Adapter<com.projects.questmanager.TaskManagementAdaptor.MyViewHolder> {
+public class TaskManagementAdaptor extends RecyclerView.Adapter<TaskManagementAdaptor.MyViewHolder> {
 
     private List<TaskInfo> list;
     private Context context;
@@ -38,14 +42,17 @@ public class TaskManagementAdaptor extends RecyclerView.Adapter<com.projects.que
         holder.taskLoc.setText(list.get(position).getTaskLoc());
         holder.taskDescription.setText(list.get(position).getTaskDescription());
         holder.correctAnswer.setText(list.get(position).getCorrectAnswer());
-        holder.editButton.setOnClickListener(v->editTask());
+        holder.editButton.setOnClickListener(v->editTask(position));
         holder.deleteButton.setOnClickListener(v->deleteTask());
     }
 
     private void deleteTask() {
     }
 
-    private void editTask() {
+    private void editTask(int position) {
+        PlayerPreferences.taskID=list.get(position).getTaskID();
+
+        //??????????????
     }
 
 

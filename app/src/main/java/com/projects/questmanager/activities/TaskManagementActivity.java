@@ -1,4 +1,4 @@
-package com.projects.questmanager;
+package com.projects.questmanager.activities;
 
 import static android.content.ContentValues.TAG;
 
@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +23,11 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.projects.questmanager.R;
+import com.projects.questmanager.TaskInfo;
+import com.projects.questmanager.adapters.TaskManagementAdaptor;
+import com.projects.questmanager.utils.MyUtils;
+import com.projects.questmanager.utils.PlayerPreferences;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -104,7 +108,7 @@ public class TaskManagementActivity extends AppCompatActivity {
         taskCorrectAnswer.setText("");
         taskLoc.setText("");
 //        String s5 = questID.getText().toString();
-        TaskInfo task = new TaskInfo(s1, s2, s3, s4, s5);
+        TaskInfo task = new TaskInfo(s1, s2, s3, s4, s5,"");
 
 //        try {
 //            MyUtils.updateTaskInfo(task,PlayerPreferences.currentQuest.getQuestID());
@@ -148,8 +152,10 @@ public class TaskManagementActivity extends AppCompatActivity {
                                 String s4 = document.getData().get("correctAnswer").toString();
                                 String s2 = document.getData().get("taskLoc").toString();
                                 String s5 = document.getData().get("questID").toString();
-                                TaskInfo task1 = new TaskInfo(s1, s2, s3, s4, s5);
-
+                                String s6 =       document.getId().toString();
+//                           document.getData().get("taskID").toString();
+                                TaskInfo task1 = new TaskInfo(s1, s2, s3, s4, s5,s6);
+                                MyUtils.updateTaskInfo(task1,s6);
                                 Log.d(TAG, document.getId() + " => " + document.getData());
 if(task1.getQuestID().equals(PlayerPreferences.currentQuest.getQuestID())){
                                 taskList.add(task1);}

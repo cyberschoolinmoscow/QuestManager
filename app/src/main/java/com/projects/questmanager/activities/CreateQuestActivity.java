@@ -1,4 +1,4 @@
-package com.projects.questmanager;
+package com.projects.questmanager.activities;
 
 import static android.content.ContentValues.TAG;
 
@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -22,10 +21,11 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.projects.questmanager.utils.MyUtils;
+import com.projects.questmanager.utils.PlayerPreferences;
+import com.projects.questmanager.QuestInfo;
+import com.projects.questmanager.R;
 import com.squareup.picasso.Picasso;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class CreateQuestActivity extends AppCompatActivity {
 

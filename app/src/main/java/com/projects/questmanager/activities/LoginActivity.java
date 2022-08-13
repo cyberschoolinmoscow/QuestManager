@@ -1,4 +1,4 @@
-package com.projects.questmanager;
+package com.projects.questmanager.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,6 +22,8 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.projects.questmanager.utils.PlayerPreferences;
+import com.projects.questmanager.R;
 //import com.google.firebase.database.DatabaseReference;
 //import com.google.firebase.firestore.FirebaseFirestore;
 //import com.squareup.picasso.Picasso;
@@ -70,7 +72,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void GoNext() {
 //        TestAct();
-        Intent intent=new Intent(this,MainMenuActivity.class);
+        Intent intent=new Intent(this, MainMenuActivity.class);
         startActivity(intent);
     }
 

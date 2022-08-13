@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UserQuestActivity"
+    tools:context=".activities.UserQuestActivity"
     android:background="@color/black">
 
     <TextView
@@ -86,7 +86,6 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_weight="1"
-            android:enabled="false"
             android:text="OK"
             android:textColor="@color/grey"
             android:visibility="invisible"/>

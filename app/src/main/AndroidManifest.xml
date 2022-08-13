@@ -14,10 +14,10 @@
         android:theme="@style/Theme.QuestManager"
         tools:targetApi="31">
         <activity
-            android:name=".TaskUserActivity"
+            android:name=".activities.TaskUserActivity"
             android:exported="false" />
         <activity
-            android:name=".ImageSelectActivity"
+            android:name=".activities.ImageSelectActivity"
             android:exported="true">
 
             <!-- <intent-filter> -->
@@ -28,7 +28,7 @@
             <!-- </intent-filter> -->
         </activity>
         <activity
-            android:name=".ImageActivity"
+            android:name=".activities.ImageActivity"
             android:exported="true">
 
             <!-- <intent-filter> -->
@@ -39,7 +39,7 @@
             <!-- </intent-filter> -->
         </activity>
         <activity
-            android:name=".CreateQuestActivity"
+            android:name=".activities.CreateQuestActivity"
             android:exported="true">
 
             <!-- <intent-filter> -->
@@ -50,7 +50,7 @@
             <!-- </intent-filter> -->
         </activity>
         <activity
-            android:name=".LoginActivity"
+            android:name=".activities.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -59,7 +59,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainMenuActivity"
+            android:name=".activities.MainMenuActivity"
             android:exported="true">
 
             <!-- <intent-filter> -->
@@ -69,13 +69,14 @@
             <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
             <!-- </intent-filter> -->
         </activity>
-        <activity android:name=".TaskManagementActivity" android:exported="true">
+        <activity android:name=".activities.TaskManagementActivity" android:exported="true">
 <!--            <intent-filter>-->
 <!--            <action android:name="android.intent.action.MAIN" />-->
 
 <!--            <category android:name="android.intent.category.LAUNCHER" />-->
 <!--        </intent-filter>-->
         </activity>
+        <activity android:name=".activities.UserQuestActivity" />
     </application>
 
 </manifest>

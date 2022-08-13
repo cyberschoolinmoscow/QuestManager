@@ -13,27 +13,26 @@
     android:paddingVertical="10dp"
     android:scaleType="centerInside">
 
-    <TextView
-        android:id="@+id/partyName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:text="text"
-        android:textAlignment="center"
-        android:textColor="@color/black"
+<!--    <TextView-->
+<!--        android:id="@+id/partyName"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="@color/alphablack"-->
+<!--        android:text="text"-->
+<!--        android:textAlignment="center"-->
+<!--        android:textColor="@color/white"-->
 
-        android:textSize="12pt" />
+<!--        android:textSize="12pt" />-->
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraint"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@mipmap/ic_launcher"
+            android:background="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -43,6 +42,7 @@
                 android:id="@+id/imgBackground"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:scaleType="centerCrop"
                 android:src="@mipmap/ic_launcher"
                 android:textColor="@color/purple_500" />
         </LinearLayout>
@@ -77,6 +77,24 @@
                 android:textSize="16pt" />
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/partyName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/alphablack"
+            android:text="text"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+
+            android:textSize="12pt"
+
+
+
+            android:layout_marginStart="4dp"
+
+            android:gravity="center"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
         <Button
             android:id="@+id/joinButton"
             android:layout_width="wrap_content"

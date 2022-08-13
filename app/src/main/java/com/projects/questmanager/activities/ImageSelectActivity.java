@@ -1,4 +1,4 @@
-package com.projects.questmanager;
+package com.projects.questmanager.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -21,6 +21,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.projects.questmanager.utils.PlayerPreferences;
+import com.projects.questmanager.R;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
@@ -320,7 +322,7 @@ public class ImageSelectActivity extends AppCompatActivity {
     }
     //CreateQuestActivity transition may be changed to another activity
    public   void closeForm(){
-        Intent intent=new Intent(this,CreateQuestActivity.class);
+        Intent intent=new Intent(this, CreateQuestActivity.class);
         startActivity(intent);
     }
 

@@ -1,17 +1,13 @@
-package com.projects.questmanager;
+package com.projects.questmanager.activities;
 
 import static android.content.ContentValues.TAG;
 
-import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
-import android.widget.Adapter;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,16 +17,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.projects.questmanager.adapters.MyAdapter;
+import com.projects.questmanager.utils.MyUtils;
+import com.projects.questmanager.QuestInfo;
+import com.projects.questmanager.R;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class MainMenuActivity extends AppCompatActivity {
 
@@ -113,7 +109,7 @@ public class MainMenuActivity extends AppCompatActivity {
                         }
                     }
                 });
-//        adapter = new MyAdapter(MainMenuActivity.this, partyNameList);
+        adapter = new MyAdapter(MainMenuActivity.this, partyNameList);
 
 //        Log.println(Log.DEBUG,"mytag",partyNameList.size()+"");
 

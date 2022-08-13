@@ -1,4 +1,6 @@
-package com.projects.questmanager;
+package com.projects.questmanager.utils;
+
+import com.projects.questmanager.QuestInfo;
 
 public class PlayerPreferences {
     public static String questName;
@@ -13,4 +15,7 @@ public class PlayerPreferences {
     public static String questLocation;
     public static QuestInfo currentQuest;
 
+    public static String userID;
+
+    public static String taskID;
 }

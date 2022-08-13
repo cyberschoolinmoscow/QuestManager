@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:background="@color/black"
     android:orientation="vertical"
-    tools:context=".MainMenuActivity">
+    tools:context=".activities.MainMenuActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBar"
