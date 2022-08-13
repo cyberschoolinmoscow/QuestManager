@@ -61,12 +61,14 @@ public class TaskManagementActivity extends AppCompatActivity {
         //todo: change edittext to textview
         questID = findViewById(R.id.questID);
 
-        String taskName, tascLoc, taskDescription, correctAnswer;
-
-        Toast.makeText(this, "l:" + taskList.size(), Toast.LENGTH_SHORT).show();
+//        String taskName, tascLoc, taskDescription, correctAnswer;
+//        Toast.makeText(this, "l:" + taskList.size(), Toast.LENGTH_SHORT).show();
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+
         adaptor = new TaskManagementAdaptor(TaskManagementActivity.this, taskList);
         recyclerView.setAdapter(adaptor);
+        updateList();
 
         newTask.setOnClickListener(v -> addNewTask());
         confirmAdding.setOnClickListener(v -> confirmNewTask());
@@ -76,6 +78,7 @@ public class TaskManagementActivity extends AppCompatActivity {
 
     private void cancelNewTask() {
         frameLayoutManagement.setVisibility(View.INVISIBLE);
+        newTask.setVisibility(View.VISIBLE);
     }
 
     private void confirmNewTask() {
@@ -84,6 +87,12 @@ public class TaskManagementActivity extends AppCompatActivity {
         String s4 = taskCorrectAnswer.getText().toString();
         String s2 = taskLoc.getText().toString();
         String s5 = questID.getText().toString();
+
+        taskName.setText("");
+        taskDesc.setText("");
+        taskCorrectAnswer.setText("");
+        taskLoc.setText("");
+//        String s5 = questID.getText().toString();
         TaskInfo task = new TaskInfo(s1, s2, s3, s4, s5);
 
         db.collection("Tasks")
@@ -93,6 +102,7 @@ public class TaskManagementActivity extends AppCompatActivity {
                     public void onSuccess(DocumentReference documentReference) {
                         Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
                         frameLayoutManagement.setVisibility(View.INVISIBLE);
+                        newTask.setVisibility(View.VISIBLE);
 
                         updateList();
 
@@ -147,5 +157,7 @@ public class TaskManagementActivity extends AppCompatActivity {
 
     private void addNewTask() {
         frameLayoutManagement.setVisibility(View.VISIBLE);
+        newTask.setVisibility(View.INVISIBLE);
+
     }
 }
