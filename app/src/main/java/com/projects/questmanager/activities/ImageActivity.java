@@ -7,6 +7,8 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -171,12 +173,12 @@ public class ImageActivity extends AppCompatActivity {
                                         public void onSuccess(Uri uri) {
                                             Uri downloadUrl = uri;
                                             //Do what you want with the url
-                                            Log.println(Log.DEBUG,"bbb",uri.toString());
-                                            PlayerPreferences.urlLink=uri.toString();
+                                            Log.println(Log.DEBUG, "bbb", uri.toString());
+                                            PlayerPreferences.urlLink = uri.toString();
                                         }
 
-                                });
-                            }
+                                    });
+                                }
                             })
 
                     .addOnFailureListener(new OnFailureListener() {
@@ -211,5 +213,35 @@ public class ImageActivity extends AppCompatActivity {
                             });
         }
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.popupmenu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.one:
+                Intent intentMyQuests = new Intent(ImageActivity.this, MyQuestActivity.class);
+                startActivity(intentMyQuests);
+
+                return true;
+            case R.id.two:
+                Intent intentCreate = new Intent(ImageActivity.this, ImageSelectActivity.class);
+                startActivity(intentCreate);
+
+                return true;
+            case R.id.three:
+                Intent intentMain = new Intent(ImageActivity.this, MainMenuActivity.class);
+                startActivity(intentMain);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+
 }
 

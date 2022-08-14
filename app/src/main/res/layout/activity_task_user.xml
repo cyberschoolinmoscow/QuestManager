@@ -19,6 +19,19 @@
         android:text="questName"
         android:textSize="10pt" />
 
+    <ImageButton
+        android:id="@+id/menuButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/gradient"
+        android:scaleType="fitStart"
+        android:src="@android:drawable/ic_menu_more"
+        android:textColor="@color/black"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"

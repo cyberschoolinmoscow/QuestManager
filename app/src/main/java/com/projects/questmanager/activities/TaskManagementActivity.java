@@ -2,13 +2,18 @@ package com.projects.questmanager.activities;
 
 import static android.content.ContentValues.TAG;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -42,6 +47,7 @@ public class TaskManagementActivity extends AppCompatActivity {
     private FrameLayout frameLayoutManagement;
     private EditText taskName, taskDesc, taskCorrectAnswer, taskLoc, questID;
     private Button confirmAdding, cancelAdding, newTask;
+    private ImageButton menuButton;
 
     private TaskManagementAdaptor adaptor;
 
@@ -52,7 +58,8 @@ public class TaskManagementActivity extends AppCompatActivity {
 //        updateList();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_management);
-
+        menuButton = findViewById(R.id.menuButton);
+        menuButton.setOnClickListener(v -> OpenMenu());
         questName = findViewById(R.id.questName);
 
         try {
@@ -222,4 +229,36 @@ if(task1.getQuestID().equals(PlayerPreferences.currentQuest.getQuestID())){
 //        handler.removeCallbacks(runnable); //stop handler when activity not visible
 //        super.onPause();
 //    }
+private void OpenMenu() {
+    PopupMenu popupMenu = new PopupMenu(TaskManagementActivity.this, menuButton);
+    popupMenu.getMenuInflater().inflate(R.menu.popupmenu, popupMenu.getMenu());
+    popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+        @Override
+        public boolean onMenuItemClick(MenuItem menuItem) {
+
+            switch (menuItem.getTitle().toString()) {
+                case "My quests":
+                    Intent intentMyQuests = new Intent(TaskManagementActivity.this, MyQuestActivity.class);
+                    startActivity(intentMyQuests);
+                    break;
+
+                case "Create quest":
+                    Intent intentCreate = new Intent(TaskManagementActivity.this, ImageSelectActivity.class);
+//                        Intent intentCreate = new Intent(MainMenuActivity.this, CreateQuestActivity.class);
+                    startActivity(intentCreate);
+                    break;
+                case "All quests":
+                    Intent intentMain = new Intent(TaskManagementActivity.this, MainMenuActivity.class);
+                    startActivity(intentMain);
+                    break;
+
+                default:
+                    break;
+            }
+            return true;
+        }
+    });
+
+    popupMenu.show();
+}
 }

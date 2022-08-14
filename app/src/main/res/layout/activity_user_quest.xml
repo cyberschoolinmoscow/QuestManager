@@ -17,6 +17,19 @@
         android:textColorHint="@color/lightgrey"
         android:textSize="15pt" />
 
+    <ImageButton
+        android:id="@+id/menuButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:background="@color/darktblue"
+        android:scaleType="fitStart"
+        android:src="@android:drawable/ic_menu_more"
+        android:textColor="@color/black"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"/>
+
 
     <TextView
         android:id="@+id/partyName"

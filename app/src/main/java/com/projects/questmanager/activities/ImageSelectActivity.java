@@ -11,9 +11,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -39,6 +43,7 @@ import java.util.UUID;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.FileProvider;
 
 
@@ -58,11 +63,21 @@ public class ImageSelectActivity extends AppCompatActivity {
     StorageReference storageReference;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
+    private ImageButton menuButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image_select);
+
+
+//        toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
+
+        menuButton = findViewById(R.id.menuButton);
+        menuButton.setOnClickListener(v -> OpenMenu());
+
 
         closeBtn=(FloatingActionButton) findViewById(R.id.closepbtn);
         closeBtn.setOnClickListener(v-> closeForm());
@@ -395,4 +410,66 @@ public class ImageSelectActivity extends AppCompatActivity {
 //        startActivity(intent);
 //    }
 
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.popupmenu, menu);
+//
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//
+//        switch (item.getItemId()) {
+//            case R.id.one:
+//                Intent intentMyQuests = new Intent(ImageSelectActivity.this, MyQuestActivity.class);
+//                startActivity(intentMyQuests);
+//
+//                return true;
+//            case R.id.two:
+//                Intent intentCreate = new Intent(ImageSelectActivity.this, ImageSelectActivity.class);
+//                startActivity(intentCreate);
+//
+//                return true;
+//            case R.id.three:
+//                Intent intentMain = new Intent(ImageSelectActivity.this, MainMenuActivity.class);
+//                startActivity(intentMain);
+//                return true;
+//            default:
+//                return super.onOptionsItemSelected(item);
+//        }
+//    }
+
+    private void OpenMenu() {
+        PopupMenu popupMenu = new PopupMenu(ImageSelectActivity.this, menuButton);
+        popupMenu.getMenuInflater().inflate(R.menu.popupmenu, popupMenu.getMenu());
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+
+                switch (menuItem.getTitle().toString()) {
+                    case "My quests":
+                        Intent intentMyQuests = new Intent(ImageSelectActivity.this, MyQuestActivity.class);
+                        startActivity(intentMyQuests);
+                        break;
+
+                    case "Create quest":
+                        Intent intentCreate = new Intent(ImageSelectActivity.this, ImageSelectActivity.class);
+//                        Intent intentCreate = new Intent(MainMenuActivity.this, CreateQuestActivity.class);
+                        startActivity(intentCreate);
+                        break;
+                    case "All quests":
+                        Intent intentMain = new Intent(ImageSelectActivity.this, MainMenuActivity.class);
+                        startActivity(intentMain);
+                        break;
+
+                    default:
+                        break;
+                }
+                return true;
+            }
+        });
+
+        popupMenu.show();
+    }
 }

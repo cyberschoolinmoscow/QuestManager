@@ -8,10 +8,14 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -41,6 +45,7 @@ public class UserQuestActivity extends AppCompatActivity {
     private TextView description;
     private TextView location;
     private ImageView showImage;
+    private ImageButton menuButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +53,8 @@ public class UserQuestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_quest);
         setTitle("\t\t\t\t\t\t\t\t\t\t\tCreate new party");
 
+        menuButton = findViewById(R.id.menuButton);
+        menuButton.setOnClickListener(v -> OpenMenu());
         userName = findViewById(R.id.userName);
         newPartyName = findViewById(R.id.partyName);
         entryPass = findViewById(R.id.entryPass);
@@ -141,5 +148,38 @@ public class UserQuestActivity extends AppCompatActivity {
         entranceButton.setVisibility(View.VISIBLE);
         entranceButton.setTextColor(Color.WHITE);
 
+    }
+
+    private void OpenMenu() {
+        PopupMenu popupMenu = new PopupMenu(UserQuestActivity.this, menuButton);
+        popupMenu.getMenuInflater().inflate(R.menu.popupmenu, popupMenu.getMenu());
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+
+                switch (menuItem.getTitle().toString()) {
+                    case "My quests":
+                        Intent intentMyQuests = new Intent(UserQuestActivity.this, MyQuestActivity.class);
+                        startActivity(intentMyQuests);
+                        break;
+
+                    case "Create quest":
+                        Intent intentCreate = new Intent(UserQuestActivity.this, ImageSelectActivity.class);
+//                        Intent intentCreate = new Intent(MainMenuActivity.this, CreateQuestActivity.class);
+                        startActivity(intentCreate);
+                        break;
+                    case "All quests":
+                        Intent intentMain = new Intent(UserQuestActivity.this, MainMenuActivity.class);
+                        startActivity(intentMain);
+                        break;
+
+                    default:
+                        break;
+                }
+                return true;
+            }
+        });
+
+        popupMenu.show();
     }
 }

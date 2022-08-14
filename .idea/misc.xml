@@ -8,7 +8,7 @@
         <entry key="..\:/Users/andre/AndroidStudioProjects/QuestManager/app/src/main/res/drawable/gradnocorners.xml" value="0.124" />
         <entry key="..\:/Users/andre/AndroidStudioProjects/QuestManager/app/src/main/res/drawable/ic_firebase_logo.xml" value="0.1735" />
         <entry key="..\:/Users/andre/AndroidStudioProjects/QuestManager/app/src/main/res/drawable/ic_launcher_background.xml" value="0.139" />
-        <entry key="..\:/Users/andre/AndroidStudioProjects/QuestManager/app/src/main/res/layout/activity_create_quest.xml" value="0.2" />
+        <entry key="..\:/Users/andre/AndroidStudioProjects/QuestManager/app/src/main/res/layout/activity_create_quest.xml" value="0.264" />
         <entry key="..\:/Users/andre/AndroidStudioProjects/QuestManager/app/src/main/res/layout/activity_image.xml" value="0.2" />
         <entry key="..\:/Users/andre/AndroidStudioProjects/QuestManager/app/src/main/res/layout/activity_image_select.xml" value="0.2" />
         <entry key="..\:/Users/andre/AndroidStudioProjects/QuestManager/app/src/main/res/layout/activity_login.xml" value="0.25416666666666665" />
@@ -16,7 +16,7 @@
         <entry key="..\:/Users/andre/AndroidStudioProjects/QuestManager/app/src/main/res/layout/activity_main_menu.xml" value="0.21403508771929824" />
         <entry key="..\:/Users/andre/AndroidStudioProjects/QuestManager/app/src/main/res/layout/activity_task_management.xml" value="0.264" />
         <entry key="..\:/Users/andre/AndroidStudioProjects/QuestManager/app/src/main/res/layout/activity_task_user.xml" value="0.264" />
-        <entry key="..\:/Users/andre/AndroidStudioProjects/QuestManager/app/src/main/res/layout/activity_user_quest.xml" value="0.1" />
+        <entry key="..\:/Users/andre/AndroidStudioProjects/QuestManager/app/src/main/res/layout/activity_user_quest.xml" value="0.2" />
         <entry key="..\:/Users/andre/AndroidStudioProjects/QuestManager/app/src/main/res/layout/item_card_view.xml" value="0.2" />
         <entry key="..\:/Users/andre/AndroidStudioProjects/QuestManager/app/src/main/res/layout/item_user_task_cardview.xml" value="0.264" />
         <entry key="..\:/Users/andre/AndroidStudioProjects/QuestManager/app/src/main/res/layout/quest_cardview.xml" value="0.264" />
