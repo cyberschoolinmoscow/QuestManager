@@ -64,7 +64,8 @@ public class TaskUserAdaptor extends RecyclerView.Adapter<TaskUserAdaptor.MyView
         user.put("questID", PlayerPreferences.currentQuest.getQuestID());
         user.put("taskAnswer",userAnswer);
         user.put("taskID",list.get(position).getTaskID());
-        MyUtils.updateUserInfo(user);
+        MyUtils.addUserInfo(user);
+//        MyUtils.updateUserInfo(user);
     }
 
 

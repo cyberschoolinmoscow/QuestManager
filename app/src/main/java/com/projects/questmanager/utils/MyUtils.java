@@ -1,8 +1,20 @@
 package com.projects.questmanager.utils;
 
+import static android.content.ContentValues.TAG;
+
+import android.content.Intent;
+import android.util.Log;
+
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.projects.questmanager.QuestInfo;
 import com.projects.questmanager.TaskInfo;
+import com.projects.questmanager.activities.TaskUserActivity;
+import com.projects.questmanager.activities.UserQuestActivity;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -44,5 +56,25 @@ public class MyUtils {
         FirebaseFirestore.getInstance().collection("Users")
                 .document(PlayerPreferences.userID)
                 .update(user);
+    }
+
+    public static void addUserInfo(Map<String, Object> user) {
+        FirebaseFirestore.getInstance().collection("Users")
+                .add(user)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+                        PlayerPreferences.userID=documentReference.getId().toString();
+//                        Intent intent = new Intent(UserQuestActivity.this, TaskUserActivity.class);
+//                        startActivity(intent);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error adding document", e);
+                    }
+                });
     }
 }

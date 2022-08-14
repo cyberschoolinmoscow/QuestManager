@@ -10,5 +10,6 @@
     <color name="grey">#464646</color>
     <color name="green">#4D00FF00</color>
     <color name="red">#4DFF0000</color>
-    <color name="alphablack">#80000000</color>
+    <color name="alphablack">#BE000000</color>
+    <color name="orange">#FF4900</color>
 </resources>

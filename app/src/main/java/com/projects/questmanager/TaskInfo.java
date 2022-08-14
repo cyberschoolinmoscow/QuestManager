@@ -14,7 +14,7 @@ public class TaskInfo {
         this.taskDescription=taskDescription;
         this.correctAnswer=correctAnswer;
         this.questID=questID;
-        this.taskID=questID;
+        this.taskID=taskID;
     }
 
     public String getTaskName() {

@@ -37,10 +37,7 @@ public class MainMenuActivity extends AppCompatActivity {
     private List<QuestInfo> partyNameList = new ArrayList<>();
     private MyAdapter adapter;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-//    private String questLocation;
 
-    //todo:create class
-//    String questName, adminName, adminPass, userPass, urlImage, isConfirmedByHQ, questDescription,usersLimit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,7 +87,7 @@ public class MainMenuActivity extends AppCompatActivity {
 
                                 QuestInfo questInfo = new QuestInfo(questName, adminName, adminPass, userPass, urlImage, isConfirmedByHQ, questDescription, usersLimit, questLocation, questID);
 
-                              MyUtils.updateQuestInfo(questInfo,questID);
+                                MyUtils.updateQuestInfo(questInfo, questID);
                                 partyNameList.add(questInfo);
 
                             }
@@ -110,18 +107,7 @@ public class MainMenuActivity extends AppCompatActivity {
                     }
                 });
         adapter = new MyAdapter(MainMenuActivity.this, partyNameList);
-
-//        Log.println(Log.DEBUG,"mytag",partyNameList.size()+"");
-
         recyclerView.setAdapter(adapter);
-
-//        adapter = new MyAdapter(MainMenuActivity.this, partyNameList);
-
-//        Log.println(Log.DEBUG,"mytag",partyNameList.size()+"");
-
-//        recyclerView.setAdapter(adapter);
-
-
     }
 
     private void OpenMenu() {
@@ -141,13 +127,14 @@ public class MainMenuActivity extends AppCompatActivity {
                         Intent intentCreate = new Intent(MainMenuActivity.this, CreateQuestActivity.class);
                         startActivity(intentCreate);
                         break;
+                    case "All quests":
+                        Intent intentMain = new Intent(MainMenuActivity.this, MainMenuActivity.class);
+                        startActivity(intentMain);
+                        break;
 
                     default:
                         break;
                 }
-//                if (menuItem.getTitle().equals("Three")) {
-//                    Toast.makeText(MainMenuActivity.this, "J O P A", Toast.LENGTH_SHORT).show();
-//                }
                 return true;
             }
         });

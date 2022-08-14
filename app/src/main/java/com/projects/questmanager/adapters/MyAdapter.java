@@ -38,20 +38,18 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     @NonNull
     @Override
     public MyAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new MyAdapter.MyViewHolder(LayoutInflater.from(context).inflate(R.layout.item_card_view, parent, false));
+        return new MyAdapter.MyViewHolder(LayoutInflater.from(context).inflate(R.layout.quest_cardview, parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyAdapter.MyViewHolder holder, int position) {
         holder.partyName.setText(list.get(position).getQuestName());
         holder.location.setText(list.get(position).getQuestLocation());
+        holder.descriptionText.setText(list.get(position).getQuestDescription());
         try {
             Uri uri = list.get(position).getUrlImage();
-            //            Uri uri= Uri.parse("https://firebasestorage.googleapis.com/v0/b/questmanager-b70bf.appspot.com/o/images%2F58b2f258-a7b7-48ed-a71a-cc24e26ed544?alt=media&token=f7ff387b-504f-4f70-907b-1a6034ee0e9c");
             Picasso.get().load(uri).into(holder.imgBackground);
-//            Picasso.get().load(list.get(position).getUrlImage()).into(holder.imgBackground);
         } catch (Exception e) {
-
         }
         holder.descriptionButton.setOnClickListener(v -> holder.openDescription(position));
 
@@ -66,11 +64,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             holder.joinButton.setText("JOIN");
             holder.joinButton.setOnClickListener(v -> holder.joining(position));
 
-            holder.descriptionButton.setText("INFO");
-            holder.descriptionButton.setOnClickListener(v -> holder.info(position));
-
+            holder.descriptionButton.setVisibility(View.GONE);
+//            holder.descriptionButton.setText("INFO");
+//            holder.descriptionButton.setOnClickListener(v -> holder.info(position));
         }
-
     }
 
 
@@ -84,20 +81,19 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         TextView partyName;
         TextView location;
+        TextView descriptionText;
         ImageView imgBackground;
         Button descriptionButton, joinButton;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             linearLayout = itemView.findViewById(R.id.layout);
-//            linearLayout.setBackgroundResource(R.drawable.abc);
             partyName = itemView.findViewById(R.id.partyName);
             location = itemView.findViewById(R.id.questLocation);
+            descriptionText = itemView.findViewById(R.id.descriptionText);
             imgBackground = itemView.findViewById(R.id.imgBackground);
             descriptionButton = itemView.findViewById(R.id.descriptionButton);
             joinButton = itemView.findViewById(R.id.joinButton);
-
-
         }
 
         public void joining(int position) {

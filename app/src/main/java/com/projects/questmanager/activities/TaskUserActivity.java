@@ -153,7 +153,7 @@ public class TaskUserActivity extends AppCompatActivity {
                                     String s2 = document.getData().get("taskLoc").toString();
                                     String s5 = document.getData().get("questID").toString();
                                     TaskInfo task1 = new TaskInfo(s1, s2, s3, s4, s5,document.getId().toString());
-
+MyUtils.updateTaskInfo(task1,task1.getTaskID());
                                     Log.d(TAG, document.getId() + " => " + document.getData());
                                     if(task1.getQuestID().equals(PlayerPreferences.currentQuest.getQuestID())){
                                         taskList.add(task1);}

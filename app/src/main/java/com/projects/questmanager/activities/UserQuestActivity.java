@@ -95,34 +95,43 @@ public class UserQuestActivity extends AppCompatActivity {
 
     private void joinQuest() {
 
+        if(!entryPass.getText().toString().equals(PlayerPreferences.currentQuest.getUserPass())){
+
+            entranceButton.setText("Wrong password");
+            entryPass.setTextColor(getResources().getColor(R.color.red));
+            return;
+        }
         Map<String, Object> user = new HashMap<>();
         user.put("userName", PlayerPreferences.playerName);
         user.put("questID", PlayerPreferences.currentQuest.getQuestID());
         user.put("taskID", "");
         user.put("taskAnswer", "");
-try{
-    MyUtils.updateUserInfo(user);
-}
-catch (Exception e) {
-    db.collection("Users")
-            .add(user)
-            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                @Override
-                public void onSuccess(DocumentReference documentReference) {
-                    Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
-                    PlayerPreferences.userID=documentReference.getId().toString();
-                    Intent intent = new Intent(UserQuestActivity.this, TaskUserActivity.class);
-                    startActivity(intent);
-                }
-            })
-            .addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Log.w(TAG, "Error adding document", e);
-                }
-            });
-//        }
-}
+//        PlayerPreferences.userID=documentReference.getId().toString();
+        Intent intent = new Intent(UserQuestActivity.this, TaskUserActivity.class);
+        startActivity(intent);
+//try{
+//    MyUtils.updateUserInfo(user);
+//}
+//catch (Exception e) {
+//    db.collection("Users")
+//            .add(user)
+//            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+//                @Override
+//                public void onSuccess(DocumentReference documentReference) {
+//                    Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+//                    PlayerPreferences.userID=documentReference.getId().toString();
+//                    Intent intent = new Intent(UserQuestActivity.this, TaskUserActivity.class);
+//                    startActivity(intent);
+//                }
+//            })
+//            .addOnFailureListener(new OnFailureListener() {
+//                @Override
+//                public void onFailure(@NonNull Exception e) {
+//                    Log.w(TAG, "Error adding document", e);
+//                }
+//            });
+////        }
+//}
 
 
     }
