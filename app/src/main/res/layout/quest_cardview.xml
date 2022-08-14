@@ -7,6 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="350dp"
     android:adjustViewBounds="true"
+    android:background="@color/darktblue"
     android:foregroundGravity="center_vertical|center_horizontal"
     android:orientation="vertical"
     android:paddingVertical="10dp"
@@ -48,7 +49,7 @@
                     android:layout_height="wrap_content"
                     android:text="text"
                     android:textAlignment="center"
-                    android:textColor="@color/white"
+                    android:textColor="@color/notwhite"
                     android:textSize="10pt" />
 
                 <TextView
@@ -57,7 +58,7 @@
                     android:layout_height="50dp"
                     android:layout_margin="10dp"
                     android:text="description................................................................................................................................................................................................................................................................................................................................................................................................................................................"
-                    android:textColor="@color/white"
+                    android:textColor="@color/notwhite"
                     android:textSize="8pt"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
@@ -85,10 +86,10 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
                         android:layout_weight="1"
-                        android:background="@color/grey"
+                        android:background="@drawable/gradient"
                         android:fontFamily="monospace"
                         android:text="description"
-                        android:textColor="@color/white"
+                        android:textColor="@color/notwhite"
                         android:textSize="8pt"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />
@@ -100,10 +101,10 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
                         android:layout_weight="1"
-                        android:background="@color/grey"
+                        android:background="@drawable/gradient"
                         android:fontFamily="monospace"
                         android:text="joinButton"
-                        android:textColor="@color/white"
+                        android:textColor="@color/notwhite"
                         android:textSize="8pt"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />

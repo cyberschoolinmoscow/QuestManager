@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/black"
+    android:background="@color/darktblue"
+
     tools:context=".activities.TaskManagementActivity"
     android:gravity="center">
 
@@ -12,7 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentTop="true"
-        android:background="@color/white"
+        android:background="@drawable/gradnocorners"
+        android:textColor="@color/notwhite"
         android:gravity="center"
         android:text="questName"
         android:textSize="10pt" />

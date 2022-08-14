@@ -3,12 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/nightblue"
     android:gravity="right"
     android:orientation="vertical">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/closepbtn"
         app:srcCompat="@android:drawable/ic_delete"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="true" />
@@ -19,7 +21,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="40dp"
-        android:text="Выбрать на устройстве"
+        android:textColor="@color/notwhite"
+        android:background="@drawable/gradient"
+        android:text="Choose from gallery"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <Button
@@ -28,7 +32,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="40dp"
-        android:text="Сфотографировать"
+        android:text="Take a photo"
+        android:textColor="@color/notwhite"
+        android:background="@drawable/gradient"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <ImageView
@@ -46,6 +52,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="40dp"
-        android:text="Загрузить"
+        android:text="Upload"
+        android:textColor="@color/notwhite"
+        android:background="@drawable/gradient"
+        android:layout_margin="20dp"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 </LinearLayout>

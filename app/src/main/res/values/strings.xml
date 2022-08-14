@@ -2,5 +2,5 @@
     <string name="app_name">QuestManager</string>
     <string name="firebase_login">login</string>
     <string name="ok">ok</string>
-    <string name="logout">123</string>
+    <string name="logout">logout</string>
 </resources>

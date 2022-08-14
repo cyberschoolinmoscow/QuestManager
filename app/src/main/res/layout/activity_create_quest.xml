@@ -5,17 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.CreateQuestActivity"
-    android:background="@color/black">
+    android:background="@color/nightblue"
+    >
 
     <TextView
         android:id="@+id/userName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/white"
-        android:textAlignment="center"
         android:text="user"
-        android:textColorHint="@color/white"
-        android:textSize="15pt" />
+        android:textAlignment="center"
+        android:textColor="@color/notwhite"
+        android:background="@color/nightblue"
+        android:textColorHint="@color/lightgrey"
+        android:layout_margin="5dp"
+        android:textSize="10pt" />
 
 
     <EditText
@@ -25,9 +28,11 @@
         android:layout_below="@id/userName"
         android:hint="Enter party name"
         android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textColorHint="@color/grey"
-        android:textSize="15pt" />
+        android:textSize="10pt"
+        android:textColor="@color/notwhite"
+        android:background="@color/darktblue"
+        android:textColorHint="@color/lightgrey"
+        android:layout_margin="5dp"/>
 
     <EditText
         android:id="@+id/questLocation"
@@ -36,53 +41,68 @@
         android:layout_below="@id/newPartyName"
         android:hint="Enter quest location"
         android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textColorHint="@color/grey"
-        android:textSize="15pt" />
+        android:textColor="@color/notwhite"
+        android:background="@color/darktblue"
+        android:textColorHint="@color/lightgrey"
+        android:layout_margin="5dp"
+        android:textSize="10pt" />
 
     <EditText
         android:id="@+id/setEntryPass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/white"
+
         android:hint="Set entry password"
         android:textAlignment="center"
-        android:textColorHint="@color/grey"
-        android:textSize="15pt"
+        android:textColor="@color/notwhite"
+        android:background="@color/darktblue"
+        android:textColorHint="@color/lightgrey"
+        android:layout_margin="5dp"
+        android:textSize="10pt"
         android:layout_below="@id/questLocation"/>
 
     <EditText
         android:id="@+id/setAdminPass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/white"
         android:hint="set admin pass"
         android:textAlignment="center"
-        android:textColorHint="@color/grey"
-        android:textSize="15pt"
+        android:textColor="@color/notwhite"
+        android:background="@color/darktblue"
+        android:textColorHint="@color/lightgrey"
+        android:layout_margin="5dp"
+        android:textSize="10pt"
         android:layout_below="@id/setEntryPass"/>
 
     <EditText
         android:id="@+id/setLimit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/white"
         android:hint="Set players limit"
         android:textAlignment="center"
-        android:textColorHint="@color/grey"
-        android:textSize="15pt"
+        android:textColor="@color/notwhite"
+        android:background="@color/darktblue"
+        android:textColorHint="@color/lightgrey"
+        android:layout_margin="5dp"
+        android:textSize="10pt"
         android:layout_below="@id/setAdminPass"/>
 
     <EditText
         android:id="@+id/questDescription"
         android:layout_width="match_parent"
         android:layout_height="225dp"
-        android:textColor="@color/white"
+
+        android:layout_below="@id/setLimit"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="@color/darktblue"
         android:hint="Enter quest description"
         android:textAlignment="center"
-        android:textColorHint="@color/grey"
-        android:textSize="15pt"
-        android:layout_below="@id/setLimit"/>
+        android:textColor="@color/notwhite"
+        android:textColorHint="@color/lightgrey"
+        android:textSize="10pt" />
 <LinearLayout
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -95,7 +115,12 @@
         android:layout_height="wrap_content"
         android:enabled="true"
         android:text="Add image"
-        android:textColor="@color/grey"
+        android:textColor="@color/notwhite"
+        android:background="@drawable/gradient"
+        android:textColorHint="@color/lightgrey"
+        android:layout_margin="5dp"
+        android:textSize="10pt"
+
      />
     <ImageView
         android:id="@+id/showImage"
@@ -104,7 +129,8 @@
         android:enabled="true"
         android:text="Add image"
         android:src="@mipmap/ic_launcher"
-        android:textColor="@color/grey"/>
+        android:textColor="@color/grey"
+        android:layout_margin="5dp"/>
 
 </LinearLayout>
 
@@ -113,9 +139,15 @@
         android:id="@+id/creationConfirm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:enabled="false"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/gradient"
+        android:enabled="true"
         android:text="OK"
-        android:textColor="@color/grey"
-        android:layout_alignParentBottom="true"/>
+        android:textColor="@color/notwhite"
+        android:layout_margin="10dp"
+
+        android:textSize="10pt" />
+
+
 
 </RelativeLayout>

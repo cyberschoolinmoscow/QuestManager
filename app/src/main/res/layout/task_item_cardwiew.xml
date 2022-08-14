@@ -7,79 +7,113 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:adjustViewBounds="true"
-    android:background="@color/black"
+    android:background="@color/darktblue"
     android:foregroundGravity="center_vertical|center_horizontal"
     android:orientation="vertical"
-    android:paddingVertical="10dp"
+    android:paddingVertical="40dp"
+
     android:scaleType="centerInside">
 
-    <TextView
+    <EditText
         android:id="@+id/taskName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:text="TaskName"
+        android:layout_margin="5dp"
+        android:background="@color/nightblue"
+        android:hint="TaskName"
         android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="12pt"
-        android:layout_marginVertical="10dp"/>
+        android:textColor="@color/notwhite"
+        android:textColorHint="@color/hintnotwhite"
+        android:textSize="10pt" />
 
-    <TextView
+    <EditText
         android:id="@+id/taskLoc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:text="TaskLocation"
+        android:layout_margin="5dp"
+        android:background="@color/nightblue"
+        android:hint="TaskLocation"
         android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="12pt"
-        android:layout_marginVertical="10dp"/>
+        android:textColor="@color/notwhite"
+        android:textColorHint="@color/hintnotwhite"
+        android:textSize="10pt" />
 
-    <TextView
+    <EditText
         android:id="@+id/taskDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:text="TaskDesc"
-        android:textColor="@color/black"
-        android:textSize="12pt"
-        android:layout_marginVertical="10dp"/>
+        android:layout_margin="5dp"
+        android:background="@color/nightblue"
+        android:hint="TaskDesc"
+        android:textColor="@color/notwhite"
+        android:textColorHint="@color/hintnotwhite"
+        android:textSize="10pt" />
 
     <EditText
         android:id="@+id/correctAnswer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:text="Correct answer"
-        android:textColor="@color/black"
-        android:textSize="12pt"
-        android:layout_marginVertical="10dp"/>
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginHorizontal="5dp"
+        android:background="@color/nightblue"
+        android:hint="Correct answer"
+        android:textColor="@color/notwhite"
+        android:textColorHint="@color/hintnotwhite"
+        android:textSize="10pt" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-    <Button
-        android:id="@+id/editButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="EDIT"
-        android:layout_weight="1"
-        android:layout_marginBottom="30dp"
 
+<!--        <Button-->
+<!--            android:id="@+id/editButton"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginLeft="5dp"-->
+<!--            android:layout_marginBottom="30dp"-->
+<!--            android:layout_weight="1"-->
+<!--            android:background="@color/nightblue"-->
+<!--            android:text="EDIT"-->
+<!--            android:textColor="@color/notwhite"-->
+<!--            android:enabled="true"-->
+<!--android:layout_margin="5dp"-->
+<!--            />-->
 
-        />
+<!--        <Button-->
+<!--            android:id="@+id/button"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginRight="5dp"-->
+<!--            android:layout_weight="1"-->
+<!--            android:background="@color/nightblue"-->
+<!--            android:text="DELETE"-->
+<!--            android:layout_margin="5dp"-->
+<!--android:enabled="true"-->
+<!--            android:textColor="@color/notwhite" />-->
 
         <Button
-        android:id="@+id/deleteButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="DELETE"
+
+            android:id="@+id/editBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-        />
-</LinearLayout>
+            android:textColor="@color/notwhite"
+            android:background="@drawable/gradient"
+            android:text="SAVE CHANGES"
+            android:layout_marginHorizontal="10dp"/>
+        <Button
 
-
+            android:id="@+id/deleteBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@color/notwhite"
+            android:background="@drawable/gradient"
+            android:text="DELETE TASK"
+            android:layout_marginHorizontal="10dp"/>
+    </LinearLayout>
 
 
 </LinearLayout>

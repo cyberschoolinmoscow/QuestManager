@@ -3,6 +3,7 @@ package com.projects.questmanager.activities;
 import static android.content.ContentValues.TAG;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -48,10 +49,12 @@ public class TaskManagementActivity extends AppCompatActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+//        updateList();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_management);
 
         questName = findViewById(R.id.questName);
+
         try {
             questName.setText(PlayerPreferences.currentQuest.getQuestName());
 
@@ -69,7 +72,7 @@ public class TaskManagementActivity extends AppCompatActivity {
         taskLoc = findViewById(R.id.taskLoc);
 
         //todo: change edittext to textview
-        questID = findViewById(R.id.questID);
+//        questID = findViewById(R.id.questID);
         try{
             questID.setText(PlayerPreferences.currentQuest.getQuestID());
         }
@@ -78,12 +81,13 @@ public class TaskManagementActivity extends AppCompatActivity {
         }
 //        String taskName, tascLoc, taskDescription, correctAnswer;
 //        Toast.makeText(this, "l:" + taskList.size(), Toast.LENGTH_SHORT).show();
+        updateList();
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
 
         adaptor = new TaskManagementAdaptor(TaskManagementActivity.this, taskList);
         recyclerView.setAdapter(adaptor);
-        updateList();
+
+//        updateList();
 
         newTask.setOnClickListener(v -> addNewTask());
         confirmAdding.setOnClickListener(v -> confirmNewTask());
@@ -172,7 +176,11 @@ if(task1.getQuestID().equals(PlayerPreferences.currentQuest.getQuestID())){
                         }
                     }
                 });
-
+//        MyUtils.updateTaskList();
+//
+//      taskList=  PlayerPreferences.taskList;
+//        adaptor = new TaskManagementAdaptor(TaskManagementActivity.this, taskList);
+//        recyclerView.setAdapter(adaptor);
     }
 
     private void addNewTask() {
@@ -180,4 +188,38 @@ if(task1.getQuestID().equals(PlayerPreferences.currentQuest.getQuestID())){
         newTask.setVisibility(View.INVISIBLE);
 
     }
+
+
+//
+//    Handler handler = new Handler();
+//    Runnable runnable;
+//    int delay = 1*1000; //Delay for 15 seconds.  One second = 1000 milliseconds.
+//
+//
+//    @Override
+//    protected void onResume() {
+//        //start handler as activity become visible
+//
+//        handler.postDelayed( runnable = new Runnable() {
+//            public void run() {
+//                //do something
+//updateList();
+//                Log.d(TAG, taskList.size()+"");
+//        adaptor = new TaskManagementAdaptor(TaskManagementActivity.this, taskList);
+//        recyclerView.setAdapter(adaptor);
+//                handler.postDelayed(runnable, delay);
+//            }
+//        }, delay);
+//
+//        super.onResume();
+//    }
+//
+//// If onPause() is not included the threads will double up when you
+//// reload the activity
+//
+//    @Override
+//    protected void onPause() {
+//        handler.removeCallbacks(runnable); //stop handler when activity not visible
+//        super.onPause();
+//    }
 }

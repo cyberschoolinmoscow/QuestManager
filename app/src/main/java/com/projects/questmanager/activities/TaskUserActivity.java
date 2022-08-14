@@ -69,7 +69,7 @@ public class TaskUserActivity extends AppCompatActivity {
             taskLoc = findViewById(R.id.taskLoc);
 
             //todo: change edittext to textview
-            questID = findViewById(R.id.questID);
+//            questID = findViewById(R.id.questID);
             try{
                 questID.setText(PlayerPreferences.currentQuest.getQuestID());
             }

@@ -72,88 +72,12 @@ public class CreateQuestActivity extends AppCompatActivity {
         }
 //        userName.setText(PlayerPrefs.playerName);
         userName.setText(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
-        newPartyName.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count,
-                                          int after) {
-            }
 
-            @Override
-            public void onTextChanged(final CharSequence s, int start, int before,
-                                      int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(final Editable s) {
-                //avoid triggering event when text is too short
-                if (s.length() >= 3) {
-                    a = true;
-                    activateButton();
-                } else {
-                    a = false;
-                }
-            }
-        });
-
-        setEntryPass.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count,
-                                          int after) {
-            }
-
-            @Override
-            public void onTextChanged(final CharSequence s, int start, int before,
-                                      int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(final Editable s) {
-                //avoid triggering event when text is too short
-                if (s.length() >= 3) {
-                    b = true;
-                    activateButton();
-                } else {
-                    b = false;
-                }
-            }
-        });
-        setLimit.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count,
-                                          int after) {
-            }
-
-            @Override
-            public void onTextChanged(final CharSequence s, int start, int before,
-                                      int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(final Editable s) {
-                //avoid triggering event when text is too short
-                setLimitVal = setLimit.getText();
-                try {
-                    limit = Integer.parseInt(String.valueOf(setLimitVal));
-                }
-                catch (NumberFormatException e) {
-                    limit = 0;
-                }
-
-                if (limit >1) {
-                    c = true;
-                    activateButton();
-                } else {
-                    c = false;
-                }
-            }
-        });
 
         creationConfirm.setOnClickListener(v->CreateParty());
 
       try {
+          a=true;b=true;c=true;
            newPartyName.setText(PlayerPreferences.currentQuest.getQuestName());
             //todo: create static fields final
             setEntryPass.setText(PlayerPreferences.currentQuest.getUserPass());
@@ -161,9 +85,87 @@ public class CreateQuestActivity extends AppCompatActivity {
             setLimit.setText(PlayerPreferences.currentQuest.getUsersLimit());
             description.setText(PlayerPreferences.currentQuest.getQuestDescription());
             location.setText(PlayerPreferences.currentQuest.getQuestLocation());
+          activateButton();
         }
       catch (Exception e){
+          newPartyName.addTextChangedListener(new TextWatcher() {
+              @Override
+              public void beforeTextChanged(CharSequence s, int start, int count,
+                                            int after) {
+              }
 
+              @Override
+              public void onTextChanged(final CharSequence s, int start, int before,
+                                        int count) {
+
+              }
+
+              @Override
+              public void afterTextChanged(final Editable s) {
+                  //avoid triggering event when text is too short
+                  if (s.length() >= 3) {
+                      a = true;
+                      activateButton();
+                  } else {
+                      a = false;
+                  }
+              }
+          });
+
+          setEntryPass.addTextChangedListener(new TextWatcher() {
+              @Override
+              public void beforeTextChanged(CharSequence s, int start, int count,
+                                            int after) {
+              }
+
+              @Override
+              public void onTextChanged(final CharSequence s, int start, int before,
+                                        int count) {
+
+              }
+
+              @Override
+              public void afterTextChanged(final Editable s) {
+                  //avoid triggering event when text is too short
+                  if (s.length() >= 3) {
+                      b = true;
+                      activateButton();
+                  } else {
+                      b = false;
+                  }
+              }
+          });
+          setLimit.addTextChangedListener(new TextWatcher() {
+              @Override
+              public void beforeTextChanged(CharSequence s, int start, int count,
+                                            int after) {
+              }
+
+              @Override
+              public void onTextChanged(final CharSequence s, int start, int before,
+                                        int count) {
+
+              }
+
+              @Override
+              public void afterTextChanged(final Editable s) {
+                  //avoid triggering event when text is too short
+                  setLimitVal = setLimit.getText();
+                  try {
+                      limit = Integer.parseInt(String.valueOf(setLimitVal));
+                  }
+                  catch (NumberFormatException e) {
+                      limit = 0;
+                  }
+
+                  if (limit >1) {
+                      c = true;
+                      activateButton();
+                  } else {
+                      c = false;
+                  }
+              }
+          });
       }
     }
 

@@ -44,7 +44,7 @@ public class TaskUserAdaptor extends RecyclerView.Adapter<TaskUserAdaptor.MyView
         holder.taskLoc.setText(list.get(position).getTaskLoc());
         holder.taskDescription.setText(list.get(position).getTaskDescription());
         //todo:hint only
-        holder.correctAnswer.setText(list.get(position).getCorrectAnswer());
+//        holder.correctAnswer.setText(list.get(position).getCorrectAnswer());
 
         holder.checkButton.setOnClickListener(v->checkAnswer(position,holder));
 //        holder.deleteButton.setOnClickListener(v->deleteTask());

@@ -1,6 +1,9 @@
 package com.projects.questmanager.utils;
 
 import com.projects.questmanager.QuestInfo;
+import com.projects.questmanager.TaskInfo;
+
+import java.util.List;
 
 public class PlayerPreferences {
     public static String questName;
@@ -18,4 +21,5 @@ public class PlayerPreferences {
     public static String userID;
 
     public static String taskID;
+    public static List<TaskInfo> taskList;
 }

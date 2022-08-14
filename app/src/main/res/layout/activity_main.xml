@@ -3,9 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0009FA33"
+    android:background="@color/nightblue"
     android:orientation="vertical">
 
     <ImageView
@@ -25,9 +26,10 @@
         android:layout_below="@+id/image"
         android:layout_marginTop="20dp"
         android:gravity="center"
+
         android:text="@string/firebase_login"
-        android:textColor="#000000"
-        android:textSize="16sp" />
+        android:textColor="@color/notwhite"
+        android:textSize="10pt" />
     <ProgressBar
         android:id="@+id/progress_circular"
         android:layout_width="wrap_content"
@@ -39,6 +41,9 @@
     <Button
         android:id="@+id/login_btn"
         android:text="@string/firebase_login"
+
+        android:background="@drawable/gradient"
+        android:textColor="@color/notwhite"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -53,10 +58,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="297dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
+        android:layout_marginBottom="297dp"
+        android:background="@drawable/gradient"
+
         android:text="@string/ok"
+
+        android:textColor="@color/notwhite"
         android:visibility="invisible" />
 
     <Button
@@ -67,6 +76,8 @@
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_marginBottom="60dp"
+        android:background="@drawable/gradient"
         android:text="@string/logout"
+        android:textColor="@color/notwhite"
         android:visibility="invisible" />
 </RelativeLayout>

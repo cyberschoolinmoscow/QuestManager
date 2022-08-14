@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/black"
+    android:background="@color/nightblue"
+
     tools:context=".activities.TaskManagementActivity"
     android:gravity="center">
 
@@ -12,9 +13,10 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentTop="true"
-        android:background="@color/white"
+        android:background="@color/nightblue"
         android:gravity="center"
         android:text="questName"
+        android:textColor="@color/notwhite"
         android:textSize="10pt" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -22,6 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/questName"
+        android:layout_above="@+id/newTaskButton"
         android:background="@color/grey" />
 
     <FrameLayout
@@ -30,7 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="100dp"
-        android:background="@color/grey"
+        android:background="@color/nightblue"
         android:visibility="invisible">
 
         <LinearLayout
@@ -38,40 +41,58 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/questID"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="questID"
-                android:textSize="12pt" />
+<!--            <EditText-->
+<!--                android:id="@+id/questID"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="questID"-->
+<!--                android:textColor="@color/notwhite"-->
+<!--                android:background="@color/darktblue"-->
+<!--                android:textSize="10pt" />-->
 
             <EditText
                 android:id="@+id/taskName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Task name"
-                android:textSize="12pt" />
+                android:textColor="@color/notwhite"
+                android:background="@color/darktblue"
+                android:textColorHint="@color/lightgrey"
+                android:layout_margin="5dp"
+                android:textSize="10pt" />
 
             <EditText
                 android:id="@+id/taskLoc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Task location"
-                android:textSize="12pt" />
+                android:textColor="@color/notwhite"
+                android:background="@color/darktblue"
+                android:textColorHint="@color/lightgrey"
+                android:layout_margin="5dp"
+                android:textSize="10pt" />
 
             <EditText
                 android:id="@+id/taskDesc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Task description"
-                android:textSize="12pt" />
+                android:textColor="@color/notwhite"
+                android:background="@color/darktblue"
+                android:textColorHint="@color/lightgrey"
+                android:layout_margin="5dp"
+                android:textSize="10pt" />
 
             <EditText
                 android:id="@+id/taskCorrAnswer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Correct answer"
-                android:textSize="12pt" />
+                android:textColor="@color/notwhite"
+                android:background="@color/darktblue"
+                android:textColorHint="@color/lightgrey"
+                android:layout_margin="5dp"
+                android:textSize="10pt" />
           <LinearLayout
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
@@ -83,6 +104,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="10pt"
+                android:background="@drawable/gradient"
+                android:textColor="@color/notwhite"
+                android:textColorHint="@color/lightgrey"
+                android:layout_margin="5dp"
                 android:text="CONFIRM"/>
 
               <Button
@@ -91,6 +116,10 @@
                   android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="10pt"
+                  android:background="@drawable/gradient"
+                  android:textColor="@color/notwhite"
+                  android:textColorHint="@color/lightgrey"
+                  android:layout_margin="5dp"
                 android:text="CANCEL"/>
 
           </LinearLayout>
@@ -102,7 +131,10 @@
         android:id="@+id/newTaskButton"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:textColor="@color/notwhite"
+        android:background="@drawable/gradient"
         android:layout_alignParentBottom="true"
+        android:layout_margin="10dp"
         android:text="NEW TASK" />
 
 </RelativeLayout>
