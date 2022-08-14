@@ -1,5 +1,7 @@
 package com.projects.questmanager.activities;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
@@ -17,10 +19,14 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.projects.questmanager.QuestInfo;
+import com.projects.questmanager.utils.MyUtils;
 import com.projects.questmanager.utils.PlayerPreferences;
 import com.projects.questmanager.R;
 import com.squareup.picasso.Picasso;
@@ -50,6 +56,7 @@ public class ImageSelectActivity extends AppCompatActivity {
 
     FirebaseStorage storage;
     StorageReference storageReference;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
 
     @Override
@@ -202,6 +209,7 @@ public class ImageSelectActivity extends AppCompatActivity {
                                             //Do what you want with the url
                                             Log.println(Log.DEBUG,"bbb",uri.toString());
                                             PlayerPreferences.urlLink=uri.toString();
+                                            CreateParty();
 
                                         }
 
@@ -325,5 +333,66 @@ public class ImageSelectActivity extends AppCompatActivity {
         Intent intent=new Intent(this, CreateQuestActivity.class);
         startActivity(intent);
     }
+
+
+    private void CreateParty() {
+        String questName, adminName, adminPass, userPass,  isConfirmedByHQ, questDescription,usersLimit,questLocation;
+        questName="default";
+        //todo: create static fields final
+        adminName=(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
+        userPass="setEntryPass";
+        adminPass="setAdminPass";
+        usersLimit="10";
+        questDescription="description";
+        questLocation="location";
+        String  questID="default";
+//        urlImage="";
+//      PlayerPreferences.urlLink=urlImage;
+        // Create a new quest with a first and last name
+//        Map<String, Object> quest = new HashMap<>();
+//        quest.put("questName", questName);
+//        quest.put("adminName", adminName);
+//        quest.put("adminPass", adminPass);
+//        quest.put("userPass", userPass);
+//        quest.put("usersLimit", usersLimit);
+//        quest.put("urlImage", "1815");
+//        quest.put("isConfirmedByHQ", "true");
+//        quest.put("questDescription", questDescription);
+
+        QuestInfo quest=new QuestInfo(questName, adminName, adminPass,  userPass,  PlayerPreferences.urlLink,  "isConfirmedByHQ",  questDescription, usersLimit, questLocation, questID);
+//if( db.collection("Quests").)
+
+//        try {
+//            MyUtils.updateQuestInfo(quest,PlayerPreferences.currentQuest.getQuestID());
+//            Intent intentManagement = new Intent(CreateQuestActivity.this, TaskManagementActivity.class);
+//            startActivity(intentManagement);
+//        }catch (Exception e) {
+// Add a new document with a generated ID
+            db.collection("Quests")
+                    .add(quest)
+                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                        @Override
+                        public void onSuccess(DocumentReference documentReference) {
+                            Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+//                        db.collection("").getId(documentReference.getId().toString()).
+//                                document.getData().put("questID",questID);
+
+                            PlayerPreferences.currentQuest=quest;
+                            PlayerPreferences.currentQuest.setQuestID(documentReference.getId());
+                            MyUtils.updateQuestInfo(quest,PlayerPreferences.currentQuest.getQuestID());
+                            Intent intentManagement = new Intent(ImageSelectActivity.this, CreateQuestActivity.class);
+                            startActivity(intentManagement);
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.w(TAG, "Error adding document", e);
+                        }
+                    });
+        }
+//        Intent intent=new Intent(CreateQuestActivity.this,TaskManagementActivity.class);
+//        startActivity(intent);
+//    }
 
 }

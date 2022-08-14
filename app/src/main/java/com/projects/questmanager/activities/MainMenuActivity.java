@@ -124,7 +124,8 @@ public class MainMenuActivity extends AppCompatActivity {
                         break;
 
                     case "Create quest":
-                        Intent intentCreate = new Intent(MainMenuActivity.this, CreateQuestActivity.class);
+                        Intent intentCreate = new Intent(MainMenuActivity.this, ImageSelectActivity.class);
+//                        Intent intentCreate = new Intent(MainMenuActivity.this, CreateQuestActivity.class);
                         startActivity(intentCreate);
                         break;
                     case "All quests":

@@ -29,6 +29,7 @@ import com.squareup.picasso.Picasso;
 
 public class CreateQuestActivity extends AppCompatActivity {
 
+    public static boolean isEditing=false;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     private TextView userName;
@@ -65,7 +66,8 @@ public class CreateQuestActivity extends AppCompatActivity {
         addImage = findViewById(R.id.addImage);
         addImage.setOnClickListener(v->selectImage());
         try {
-            Picasso.get().load(PlayerPreferences.urlLink).into(showImage);
+            Picasso.get().load(PlayerPreferences.currentQuest.getUrlImage()).into(showImage);
+//            Picasso.get().load(PlayerPreferences.urlLink).into(showImage);
         }
         catch (Exception e){
 
@@ -77,15 +79,20 @@ public class CreateQuestActivity extends AppCompatActivity {
         creationConfirm.setOnClickListener(v->CreateParty());
 
       try {
-          a=true;b=true;c=true;
+          if(isEditing) {
+              a = true;
+              b = true;
+              c = true;
            newPartyName.setText(PlayerPreferences.currentQuest.getQuestName());
-            //todo: create static fields final
+              //todo: create static fields final
             setEntryPass.setText(PlayerPreferences.currentQuest.getUserPass());
             setAdminPass.setText(PlayerPreferences.currentQuest.getAdminPass());
             setLimit.setText(PlayerPreferences.currentQuest.getUsersLimit());
             description.setText(PlayerPreferences.currentQuest.getQuestDescription());
             location.setText(PlayerPreferences.currentQuest.getQuestLocation());
-          activateButton();
+              activateButton();
+              isEditing=false;
+          }
         }
       catch (Exception e){
           newPartyName.addTextChangedListener(new TextWatcher() {
@@ -178,6 +185,9 @@ public class CreateQuestActivity extends AppCompatActivity {
         PlayerPreferences.usersLimit=(setLimit.getText().toString());
         PlayerPreferences.questDescription=description.getText().toString();
         PlayerPreferences.questLocation=location.getText().toString();
+
+        //todo: here must be called updateinfo
+
         Intent intentSelectImage=new Intent(CreateQuestActivity.this, ImageSelectActivity.class);
         startActivity(intentSelectImage);
     }
@@ -194,7 +204,7 @@ String questName, adminName, adminPass, userPass, urlImage, isConfirmedByHQ, que
         questDescription=description.getText().toString();
         questLocation=location.getText().toString();
       String  questID="default";
-        urlImage="";
+//        urlImage="";
 urlImage=PlayerPreferences.urlLink;
         // Create a new quest with a first and last name
 //        Map<String, Object> quest = new HashMap<>();
@@ -208,6 +218,9 @@ urlImage=PlayerPreferences.urlLink;
 //        quest.put("questDescription", questDescription);
 
 QuestInfo quest=new QuestInfo(questName, adminName, adminPass,  userPass,  urlImage,  "isConfirmedByHQ",  questDescription, usersLimit, questLocation, questID);
+      quest.setQuestID(PlayerPreferences.currentQuest.getQuestID());
+      PlayerPreferences.currentQuest=quest;
+//      quest.setUrlImage(PlayerPreferences.currentQuest.getUrlImage());
 //if( db.collection("Quests").)
 
         try {
@@ -225,7 +238,9 @@ QuestInfo quest=new QuestInfo(questName, adminName, adminPass,  userPass,  urlIm
 //                        db.collection("").getId(documentReference.getId().toString()).
 //                                document.getData().put("questID",questID);
 
-
+                            PlayerPreferences.currentQuest=quest;
+PlayerPreferences.currentQuest.setQuestID(documentReference.getId());
+                            MyUtils.updateQuestInfo(quest,PlayerPreferences.currentQuest.getQuestID());
                             Intent intentManagement = new Intent(CreateQuestActivity.this, TaskManagementActivity.class);
                             startActivity(intentManagement);
                         }

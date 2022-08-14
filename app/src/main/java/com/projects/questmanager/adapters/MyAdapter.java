@@ -114,6 +114,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         public void editInfo(int position) {
             PlayerPreferences.currentQuest = list.get(position);
+            CreateQuestActivity.isEditing=true;
             Intent intent = new Intent(context, CreateQuestActivity.class);
             context.startActivity(intent);
         }
