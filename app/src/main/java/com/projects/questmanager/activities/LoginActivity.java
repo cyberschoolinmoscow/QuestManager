@@ -1,7 +1,11 @@
 package com.projects.questmanager.activities;
 
+import static androidx.core.content.PackageManagerCompat.LOG_TAG;
+
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -25,6 +29,8 @@ import com.google.firebase.auth.GoogleAuthProvider;
 import com.projects.questmanager.utils.PlayerPreferences;
 import com.projects.questmanager.R;
 
+import java.util.concurrent.TimeUnit;
+
 public class LoginActivity extends AppCompatActivity {
 
     static final int GOOGLE_SIGN_IN = 123;
@@ -32,8 +38,11 @@ public class LoginActivity extends AppCompatActivity {
     Button btn_login, btn_logout,go_btn;
     TextView text;
     ImageView image;
-    ProgressBar progressBar;
+    ProgressBar progressBar,progressBar2;
     GoogleSignInClient mGoogleSignInClient;
+    private Button btnStart;
+    private Handler h;
+    private boolean isStarted=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,25 +56,100 @@ public class LoginActivity extends AppCompatActivity {
         text = findViewById(R.id.text);
         image = findViewById(R.id.image);
         progressBar = findViewById(R.id.progress_circular);
-        progressBar.setVisibility(View.INVISIBLE);
-        mAuth = FirebaseAuth.getInstance();
+        progressBar2 = findViewById(R.id.progressBar);
 
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken("1098344294693-0qpr4j0bpvacu5d3nepuefv72q0ahrr4.apps.googleusercontent.com")
-                .requestEmail()
-                .build();
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
-        btn_login.setOnClickListener(v -> SignInGoogle());
-        btn_logout.setOnClickListener(v -> Logout());
-        go_btn.setOnClickListener(v -> GoNext());
+        btnStart = (Button) findViewById(R.id.btnStart);
+        Context context=this;
+        h = new Handler() {
+            public void handleMessage(android.os.Message msg) {
+                // обновляем TextView
+                progressBar2.setProgress(msg.what);
+                if (msg.what == 100) {
+//                   btnStart.setEnabled(true);
+                    isStarted=true;
+                    progressBar2.setVisibility(View.INVISIBLE);
+                }
 
-        if (mAuth.getCurrentUser() != null) {
-            FirebaseUser user = mAuth.getCurrentUser();
-            updateUI(user);
+
+                if(isStarted) {
+                    isStarted=false;
+                    progressBar.setVisibility(View.INVISIBLE);
+                    mAuth = FirebaseAuth.getInstance();
+
+                    GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                            .requestIdToken("1098344294693-0qpr4j0bpvacu5d3nepuefv72q0ahrr4.apps.googleusercontent.com")
+                            .requestEmail()
+                            .build();
+                    mGoogleSignInClient = GoogleSignIn.getClient(context, gso);
+
+                    btn_login.setOnClickListener(v -> SignInGoogle());
+                    btn_logout.setOnClickListener(v -> Logout());
+                    go_btn.setOnClickListener(v -> GoNext());
+
+                    if (mAuth.getCurrentUser() != null) {
+                        FirebaseUser user = mAuth.getCurrentUser();
+                        updateUI(user);
+                    }
+                }
+            };
+        };
+//
+//if(isStarted) {
+//    progressBar.setVisibility(View.INVISIBLE);
+//    mAuth = FirebaseAuth.getInstance();
+//
+//    GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+//            .requestIdToken("1098344294693-0qpr4j0bpvacu5d3nepuefv72q0ahrr4.apps.googleusercontent.com")
+//            .requestEmail()
+//            .build();
+   // mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+//    Context context=this;
+ //   mGoogleSignInClient = GoogleSignIn.getClient(context,
+//
+//    btn_login.setOnClickListener(v -> SignInGoogle());
+//    btn_logout.setOnClickListener(v -> Logout());
+//    go_btn.setOnClickListener(v -> GoNext());
+//
+//    if (mAuth.getCurrentUser() != null) {
+//        FirebaseUser user = mAuth.getCurrentUser();
+//        updateUI(user);
+//    }
+//}
+    }
+    public void onclick(View v) {
+        switch (v.getId()) {
+            case R.id.btnStart:
+                btnStart.setEnabled(false);
+                btnStart.setVisibility(View.INVISIBLE);
+
+
+                Thread t = new Thread(new Runnable() {
+                    public void run() {
+                        for (int i = 1; i <= 100; i++) {
+                            // долгий процесс
+                            downloadFile();
+                            h.sendEmptyMessage(i);
+                            // пишем лог
+                            Log.d("TAG", "i = " + i);
+                        }
+                    }
+                });
+                t.start();
+                break;
+
+            default:
+                break;
         }
     }
-
+    void downloadFile() {
+        // пауза - 1 секунда
+        try {
+            TimeUnit.MILLISECONDS.sleep(50);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
     private void GoNext() {
         Intent intent=new Intent(this, MainMenuActivity.class);
         startActivity(intent);
