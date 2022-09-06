@@ -24,9 +24,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.projects.questmanager.utils.PlayerPreferences;
 import com.projects.questmanager.R;
-//import com.google.firebase.database.DatabaseReference;
-//import com.google.firebase.firestore.FirebaseFirestore;
-//import com.squareup.picasso.Picasso;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -52,7 +49,6 @@ public class LoginActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progress_circular);
         progressBar.setVisibility(View.INVISIBLE);
         mAuth = FirebaseAuth.getInstance();
-//        db = FirebaseFirestore.getInstance();
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken("1098344294693-0qpr4j0bpvacu5d3nepuefv72q0ahrr4.apps.googleusercontent.com")
@@ -71,17 +67,9 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void GoNext() {
-//        TestAct();
         Intent intent=new Intent(this, MainMenuActivity.class);
         startActivity(intent);
     }
-
-
-//    DatabaseReference reference;
-//    FirebaseFirestore db ;
-//    private void TestAct() {
-//        String userTofind=userDataTest.userName;
-//    }
 
     public void SignInGoogle() {
         progressBar.setVisibility(View.VISIBLE);
@@ -140,9 +128,6 @@ public class LoginActivity extends AppCompatActivity {
             String name = user.getDisplayName();
             String email = user.getEmail();
             String photo = String.valueOf(user.getPhotoUrl());
-//
-//            userDataTest.photo=photo;
-//            userDataTest.userName=user.getEmail();
 
             text.append("Info : \n");
             text.append(name + "\n");

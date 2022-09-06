@@ -51,7 +51,6 @@ public class CreateQuestActivity extends AppCompatActivity {
 
     private ImageView showImage;
     private Button addImage;
-//    private DatabaseReference roomRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,14 +72,8 @@ public class CreateQuestActivity extends AppCompatActivity {
         addImage.setOnClickListener(v -> selectImage());
         try {
             Picasso.get().load(PlayerPreferences.currentQuest.getUrlImage()).into(showImage);
-//            Picasso.get().load(PlayerPreferences.urlLink).into(showImage);
-        } catch (Exception e) {
-
-        }
-//        userName.setText(PlayerPrefs.playerName);
+        } catch (Exception e) {}
         userName.setText(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
-
-
         creationConfirm.setOnClickListener(v -> CreateParty());
 
         try {
@@ -89,7 +82,6 @@ public class CreateQuestActivity extends AppCompatActivity {
                 b = true;
                 c = true;
                 newPartyName.setText(PlayerPreferences.currentQuest.getQuestName());
-                //todo: create static fields final
                 setEntryPass.setText(PlayerPreferences.currentQuest.getUserPass());
                 setAdminPass.setText(PlayerPreferences.currentQuest.getAdminPass());
                 setLimit.setText(PlayerPreferences.currentQuest.getUsersLimit());
@@ -181,7 +173,6 @@ public class CreateQuestActivity extends AppCompatActivity {
 
     private void selectImage() {
         PlayerPreferences.questName = newPartyName.getText().toString();
-        //todo: create static fields final
         PlayerPreferences.adminName = (FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
         PlayerPreferences.userPass = setEntryPass.getText().toString();
         PlayerPreferences.adminPass = setAdminPass.getText().toString();
@@ -194,7 +185,6 @@ public class CreateQuestActivity extends AppCompatActivity {
         Intent intentSelectImage = new Intent(CreateQuestActivity.this, ImageSelectActivity.class);
         startActivity(intentSelectImage);
     }
-//    FirebaseDatabase database;
 
     private void CreateParty() {
         String questName, adminName, adminPass, userPass, urlImage, isConfirmedByHQ, questDescription, usersLimit, questLocation;
@@ -207,24 +197,11 @@ public class CreateQuestActivity extends AppCompatActivity {
         questDescription = description.getText().toString();
         questLocation = location.getText().toString();
         String questID = "default";
-//        urlImage="";
         urlImage = PlayerPreferences.urlLink;
-        // Create a new quest with a first and last name
-//        Map<String, Object> quest = new HashMap<>();
-//        quest.put("questName", questName);
-//        quest.put("adminName", adminName);
-//        quest.put("adminPass", adminPass);
-//        quest.put("userPass", userPass);
-//        quest.put("usersLimit", usersLimit);
-//        quest.put("urlImage", "1815");
-//        quest.put("isConfirmedByHQ", "true");
-//        quest.put("questDescription", questDescription);
 
         QuestInfo quest = new QuestInfo(questName, adminName, adminPass, userPass, urlImage, "isConfirmedByHQ", questDescription, usersLimit, questLocation, questID);
         quest.setQuestID(PlayerPreferences.currentQuest.getQuestID());
         PlayerPreferences.currentQuest = quest;
-//      quest.setUrlImage(PlayerPreferences.currentQuest.getUrlImage());
-//if( db.collection("Quests").)
 
         try {
             MyUtils.updateQuestInfo(quest, PlayerPreferences.currentQuest.getQuestID());
@@ -238,9 +215,6 @@ public class CreateQuestActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(DocumentReference documentReference) {
                             Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
-//                        db.collection("").getId(documentReference.getId().toString()).
-//                                document.getData().put("questID",questID);
-
                             PlayerPreferences.currentQuest = quest;
                             PlayerPreferences.currentQuest.setQuestID(documentReference.getId());
                             MyUtils.updateQuestInfo(quest, PlayerPreferences.currentQuest.getQuestID());
@@ -255,8 +229,6 @@ public class CreateQuestActivity extends AppCompatActivity {
                         }
                     });
         }
-//        Intent intent=new Intent(CreateQuestActivity.this,TaskManagementActivity.class);
-//        startActivity(intent);
     }
 
     private void activateButton() {

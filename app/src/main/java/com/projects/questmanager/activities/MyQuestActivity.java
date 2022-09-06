@@ -63,12 +63,8 @@ public class MyQuestActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
-//                                                   partyNameList.clear();
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 //  getResult
-                                String questName, adminName, adminPass, userPass, urlImage, isConfirmedByHQ, questDescription, usersLimit;
-
-                                Log.d(TAG, document.getId() + " => " + document.getData());
                                 String userName = document.getData().get("userName").toString();
                                 String questID = document.getData().get("questID").toString();
                                 String taskAnswer = document.getData().get("taskAnswer").toString();
@@ -76,7 +72,6 @@ public class MyQuestActivity extends AppCompatActivity {
                                 if (userName.equals(PlayerPreferences.playerName)) {
                                     if (!questIds.contains(questID)) {
                                         questIds.add(questID);
-                                        Log.println(Log.DEBUG, "USR", "" + questID);
                                     }
                                 }
                             }
@@ -129,39 +124,15 @@ public class MyQuestActivity extends AppCompatActivity {
 
 
                             }
-
-//                            partyNameList.add("j o p a a a");
-//        partyNameList.add("biba");
-//        partyNameList.add("Dina");
-
-//                            adapter = new MyAdapter(MyQuestActivity.this, partyNameList);
-//
-////        Log.println(Log.DEBUG,"mytag",partyNameList.size()+"");
-//
-//                            recyclerView.setAdapter(adapter);
                         } else {
                             Log.w(TAG, "Error getting documents.", task.getException());
                         }
                         adapter = new MyAdapter(MyQuestActivity.this, partyNameList);
-
-//        Log.println(Log.DEBUG,"mytag",partyNameList.size()+"");
-
                         recyclerView.setAdapter(adapter);
                     }
                 });
         adapter = new MyAdapter(MyQuestActivity.this, partyNameList);
-
-//        Log.println(Log.DEBUG,"mytag",partyNameList.size()+"");
-
         recyclerView.setAdapter(adapter);
-
-//        adapter = new MyAdapter(MainMenuActivity.this, partyNameList);
-
-//        Log.println(Log.DEBUG,"mytag",partyNameList.size()+"");
-
-//        recyclerView.setAdapter(adapter);
-
-
     }
 
     private void OpenMenu() {

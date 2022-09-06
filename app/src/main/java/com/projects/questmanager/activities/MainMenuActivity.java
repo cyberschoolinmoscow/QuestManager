@@ -91,15 +91,7 @@ public class MainMenuActivity extends AppCompatActivity {
                                 partyNameList.add(questInfo);
 
                             }
-
-//                            partyNameList.add("j o p a a a");
-//        partyNameList.add("biba");
-//        partyNameList.add("Dina");
-
                             adapter = new MyAdapter(MainMenuActivity.this, partyNameList);
-
-//        Log.println(Log.DEBUG,"mytag",partyNameList.size()+"");
-
                             recyclerView.setAdapter(adapter);
                         } else {
                             Log.w(TAG, "Error getting documents.", task.getException());

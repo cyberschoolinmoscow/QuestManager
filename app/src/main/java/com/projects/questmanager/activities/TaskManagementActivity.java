@@ -78,23 +78,17 @@ public class TaskManagementActivity extends AppCompatActivity {
         newTask = findViewById(R.id.newTaskButton);
         taskLoc = findViewById(R.id.taskLoc);
 
-        //todo: change edittext to textview
-//        questID = findViewById(R.id.questID);
         try{
             questID.setText(PlayerPreferences.currentQuest.getQuestID());
         }
         catch (Exception e){
          e.printStackTrace();
         }
-//        String taskName, tascLoc, taskDescription, correctAnswer;
-//        Toast.makeText(this, "l:" + taskList.size(), Toast.LENGTH_SHORT).show();
         updateList();
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         adaptor = new TaskManagementAdaptor(TaskManagementActivity.this, taskList);
         recyclerView.setAdapter(adaptor);
-
-//        updateList();
 
         newTask.setOnClickListener(v -> addNewTask());
         confirmAdding.setOnClickListener(v -> confirmNewTask());
@@ -118,13 +112,9 @@ public class TaskManagementActivity extends AppCompatActivity {
         taskDesc.setText("");
         taskCorrectAnswer.setText("");
         taskLoc.setText("");
-//        String s5 = questID.getText().toString();
         TaskInfo task = new TaskInfo(s1, s2, s3, s4, s5,"");
 
-//        try {
-//            MyUtils.updateTaskInfo(task,PlayerPreferences.currentQuest.getQuestID());
-//        }catch (Exception e) {
-            db.collection("Tasks")
+        db.collection("Tasks")
                     .add(task)
                     .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                         @Override
@@ -164,71 +154,26 @@ public class TaskManagementActivity extends AppCompatActivity {
                                 String s2 = document.getData().get("taskLoc").toString();
                                 String s5 = document.getData().get("questID").toString();
                                 String s6 =       document.getId().toString();
-//                           document.getData().get("taskID").toString();
                                 TaskInfo task1 = new TaskInfo(s1, s2, s3, s4, s5,s6);
                                 MyUtils.updateTaskInfo(task1,s6);
                                 Log.d(TAG, document.getId() + " => " + document.getData());
 if(task1.getQuestID().equals(PlayerPreferences.currentQuest.getQuestID())){
                                 taskList.add(task1);}
-
                             }
-
                             adaptor = new TaskManagementAdaptor(TaskManagementActivity.this, taskList);
-
-//        Log.println(Log.DEBUG,"mytag",partyNameList.size()+"");
-
                             recyclerView.setAdapter(adaptor);
                         } else {
                             Log.w(TAG, "Error getting documents.", task.getException());
                         }
                     }
                 });
-//        MyUtils.updateTaskList();
-//
-//      taskList=  PlayerPreferences.taskList;
-//        adaptor = new TaskManagementAdaptor(TaskManagementActivity.this, taskList);
-//        recyclerView.setAdapter(adaptor);
     }
 
     private void addNewTask() {
         frameLayoutManagement.setVisibility(View.VISIBLE);
         newTask.setVisibility(View.INVISIBLE);
-
     }
 
-
-//
-//    Handler handler = new Handler();
-//    Runnable runnable;
-//    int delay = 1*1000; //Delay for 15 seconds.  One second = 1000 milliseconds.
-//
-//
-//    @Override
-//    protected void onResume() {
-//        //start handler as activity become visible
-//
-//        handler.postDelayed( runnable = new Runnable() {
-//            public void run() {
-//                //do something
-//updateList();
-//                Log.d(TAG, taskList.size()+"");
-//        adaptor = new TaskManagementAdaptor(TaskManagementActivity.this, taskList);
-//        recyclerView.setAdapter(adaptor);
-//                handler.postDelayed(runnable, delay);
-//            }
-//        }, delay);
-//
-//        super.onResume();
-//    }
-//
-//// If onPause() is not included the threads will double up when you
-//// reload the activity
-//
-//    @Override
-//    protected void onPause() {
-//        handler.removeCallbacks(runnable); //stop handler when activity not visible
-//        super.onPause();
-//    }
 private void OpenMenu() {
     PopupMenu popupMenu = new PopupMenu(TaskManagementActivity.this, menuButton);
     popupMenu.getMenuInflater().inflate(R.menu.popupmenu, popupMenu.getMenu());
@@ -244,7 +189,6 @@ private void OpenMenu() {
 
                 case "Create quest":
                     Intent intentCreate = new Intent(TaskManagementActivity.this, ImageSelectActivity.class);
-//                        Intent intentCreate = new Intent(MainMenuActivity.this, CreateQuestActivity.class);
                     startActivity(intentCreate);
                     break;
                 case "All quests":
@@ -258,7 +202,6 @@ private void OpenMenu() {
             return true;
         }
     });
-
     popupMenu.show();
 }
 }

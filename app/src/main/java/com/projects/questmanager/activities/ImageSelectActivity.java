@@ -71,14 +71,8 @@ public class ImageSelectActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image_select);
 
-
-//        toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-
         menuButton = findViewById(R.id.menuButton);
         menuButton.setOnClickListener(v -> OpenMenu());
-
-
         closeBtn=(FloatingActionButton) findViewById(R.id.closepbtn);
         closeBtn.setOnClickListener(v-> closeForm());
         btn_gallery =(Button)findViewById(R.id.btn);
@@ -111,7 +105,6 @@ public class ImageSelectActivity extends AppCompatActivity {
                             imgUri= FileProvider.getUriForFile(ImageSelectActivity.this,"myauthorityK",imgfile);
                             Toast.makeText(ImageSelectActivity.this, imgfile.toString()+" OK", Toast.LENGTH_LONG).show();
                             camera.putExtra(MediaStore.EXTRA_OUTPUT,imgUri);
-                            //  startActivityForResult(camera,PICK_PHOTO);
                             startActivityIfNeeded(camera,PICK_PHOTO);
                         }
                     }catch (Exception e){e.printStackTrace();}
@@ -122,65 +115,7 @@ public class ImageSelectActivity extends AppCompatActivity {
         // get the Firebase storage reference
         storage = FirebaseStorage.getInstance("gs://questmanager-b70bf.appspot.com");
         storageReference = storage.getReference();
-
         btn_upload.setOnClickListener(v->uploadImage());
-
-//        DatabaseReference myph= FirebaseDatabase.getInstance().getReference().child("myph");
-//
-//        myph.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                ur=Uri.parse(dataSnapshot.getValue().toString());
-//                Picasso.get().load(ur).into(imageView);
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
-//
-
-
-//        auth=FirebaseAuth.getInstance();
-//        mStorageRef = FirebaseStorage.getInstance().getReference();
-
-
-//        filePath=ur;
-
-
-//                new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                FirebaseUser user=auth.getCurrentUser();
-//                String userID=user.getUid();
-
-//                String name=imgUri.toString();
-//                StorageReference riversRef = mStorageRef.child(PlayerPreferences.questName+".jpg");
-//                riversRef.putFile(imgUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-//                    @Override
-//                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-//
-//                        if (taskSnapshot.getMetadata() != null) {
-//                            if (taskSnapshot.getMetadata().getReference() != null) {
-//                                Task<Uri> result = taskSnapshot.getStorage().getDownloadUrl();
-//                                result.addOnSuccessListener(new OnSuccessListener<Uri>() {
-//                                    @Override
-//                                    public void onSuccess(Uri uri) {
-//                                        String imageUrl = uri.toString();
-//                                        //createNewPost(imageUrl);
-//                                        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("Dishes");
-//
-//                                        myRef.child(PlayerPreferences.questName).child("profilePic").setValue(imageUrl);
-//                                        Toast.makeText(ImageSelectActivity.this,  imageUrl+" OK", Toast.LENGTH_LONG).show();
-//
-//                                    }
-//                                });
-//                            }
-//                        }}
-//                });
-//            }});
-
     }
     
     private void uploadImage() {
@@ -361,27 +296,9 @@ public class ImageSelectActivity extends AppCompatActivity {
         questDescription="description";
         questLocation="location";
         String  questID="default";
-//        urlImage="";
-//      PlayerPreferences.urlLink=urlImage;
-        // Create a new quest with a first and last name
-//        Map<String, Object> quest = new HashMap<>();
-//        quest.put("questName", questName);
-//        quest.put("adminName", adminName);
-//        quest.put("adminPass", adminPass);
-//        quest.put("userPass", userPass);
-//        quest.put("usersLimit", usersLimit);
-//        quest.put("urlImage", "1815");
-//        quest.put("isConfirmedByHQ", "true");
-//        quest.put("questDescription", questDescription);
 
         QuestInfo quest=new QuestInfo(questName, adminName, adminPass,  userPass,  PlayerPreferences.urlLink,  "isConfirmedByHQ",  questDescription, usersLimit, questLocation, questID);
-//if( db.collection("Quests").)
 
-//        try {
-//            MyUtils.updateQuestInfo(quest,PlayerPreferences.currentQuest.getQuestID());
-//            Intent intentManagement = new Intent(CreateQuestActivity.this, TaskManagementActivity.class);
-//            startActivity(intentManagement);
-//        }catch (Exception e) {
 // Add a new document with a generated ID
             db.collection("Quests")
                     .add(quest)
@@ -389,8 +306,6 @@ public class ImageSelectActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(DocumentReference documentReference) {
                             Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
-//                        db.collection("").getId(documentReference.getId().toString()).
-//                                document.getData().put("questID",questID);
 
                             PlayerPreferences.currentQuest=quest;
                             PlayerPreferences.currentQuest.setQuestID(documentReference.getId());
@@ -406,39 +321,6 @@ public class ImageSelectActivity extends AppCompatActivity {
                         }
                     });
         }
-//        Intent intent=new Intent(CreateQuestActivity.this,TaskManagementActivity.class);
-//        startActivity(intent);
-//    }
-
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.popupmenu, menu);
-//
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//
-//        switch (item.getItemId()) {
-//            case R.id.one:
-//                Intent intentMyQuests = new Intent(ImageSelectActivity.this, MyQuestActivity.class);
-//                startActivity(intentMyQuests);
-//
-//                return true;
-//            case R.id.two:
-//                Intent intentCreate = new Intent(ImageSelectActivity.this, ImageSelectActivity.class);
-//                startActivity(intentCreate);
-//
-//                return true;
-//            case R.id.three:
-//                Intent intentMain = new Intent(ImageSelectActivity.this, MainMenuActivity.class);
-//                startActivity(intentMain);
-//                return true;
-//            default:
-//                return super.onOptionsItemSelected(item);
-//        }
-//    }
 
     private void OpenMenu() {
         PopupMenu popupMenu = new PopupMenu(ImageSelectActivity.this, menuButton);

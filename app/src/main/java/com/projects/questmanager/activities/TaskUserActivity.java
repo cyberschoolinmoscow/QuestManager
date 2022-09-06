@@ -70,9 +70,6 @@ public class TaskUserActivity extends AppCompatActivity {
         taskName = findViewById(R.id.taskName);
         taskDesc = findViewById(R.id.taskDesc);
         taskCorrectAnswer = findViewById(R.id.taskCorrAnswer);
-//            confirmAdding = findViewById(R.id.confirmAdding);
-//            cancelAdding = findViewById(R.id.cancelAdding);
-//            newTask = findViewById(R.id.newTaskButton);
         taskLoc = findViewById(R.id.taskLoc);
 
         //todo: change edittext to textview
@@ -82,19 +79,10 @@ public class TaskUserActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-//        String taskName, tascLoc, taskDescription, correctAnswer;
-//        Toast.makeText(this, "l:" + taskList.size(), Toast.LENGTH_SHORT).show();
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-
         adaptor = new TaskUserAdaptor(TaskUserActivity.this, taskList);
         recyclerView.setAdapter(adaptor);
         updateList();
-
-//            newTask.setOnClickListener(v -> addNewTask());
-//            confirmAdding.setOnClickListener(v -> confirmNewTask());
-//            cancelAdding.setOnClickListener(v -> cancelNewTask());
-
     }
 
     private void cancelNewTask() {
@@ -113,7 +101,6 @@ public class TaskUserActivity extends AppCompatActivity {
         taskDesc.setText("");
         taskCorrectAnswer.setText("");
         taskLoc.setText("");
-//        String s5 = questID.getText().toString();
         TaskInfo task = new TaskInfo(s1, s2, s3, s4, s5, "");
 
         try {
@@ -124,13 +111,10 @@ public class TaskUserActivity extends AppCompatActivity {
                     .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                         @Override
                         public void onSuccess(DocumentReference documentReference) {
-                            Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
                             frameLayoutManagement.setVisibility(View.INVISIBLE);
                             newTask.setVisibility(View.VISIBLE);
 
                             updateList();
-
-
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
@@ -168,12 +152,7 @@ public class TaskUserActivity extends AppCompatActivity {
                             }
 
                             adaptor = new TaskUserAdaptor(TaskUserActivity.this, taskList);
-
-//        Log.println(Log.DEBUG,"mytag",partyNameList.size()+"");
-
                             recyclerView.setAdapter(adaptor);
-                        } else {
-                            Log.w(TAG, "Error getting documents.", task.getException());
                         }
                     }
                 });
@@ -201,7 +180,6 @@ public class TaskUserActivity extends AppCompatActivity {
 
                     case "Create quest":
                         Intent intentCreate = new Intent(TaskUserActivity.this, ImageSelectActivity.class);
-//                        Intent intentCreate = new Intent(MainMenuActivity.this, CreateQuestActivity.class);
                         startActivity(intentCreate);
                         break;
                     case "All quests":
